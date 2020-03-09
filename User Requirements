@@ -10,20 +10,23 @@ Individuals are unable to afford medication advised to them even though there is
 U5: As a user, I want to be able to compare prices of certain drugs across local stores to find the cheapest price.
 U6: As a user, I want to be able to find cheaper alternatives to certain drugs that have the same unique drug identifier (UDI).
 
-There is currently no convenient method for people to keep track of when to take their medicines and what to take.
-U7: As a patient, I want to keep track of when to take my medications so that I can be reminded when to take my medication.
+Patients struggle to keep track of when to take their medicines and what to take.
+U8: As a patient, I want to be reminded of when to take my medication so that I can stick to my medication schedule.
+  FEATURE: Adding reminders to take medications.
   GIVEN: I am on the main app page
   WHEN: I click on a calendar date
   THEN: I can schedule when to take my medication
   WHEN: I need to take my medication
   THEN: I receive a notification reminder.
   
-U8: As a patient, I want to see an overview of my medication schedule so that I can anticipate when to take them.
+U9: As a patient, I want to see an overview of my medication schedule so that I can anticipate when to take them.
+  FEATURE: A calendar to view reminders.
   GIVEN: I am on the main app page
   THEN: I see my personal schedule
 
 Individuals are not up to date or aware of their current medical histories leading to health issues when diagnosing.
-U9: As a user, I want to know my medical history so that my condition can be diagnosed by my doctor accurately.
+U10: As a user, I want to know my medical history so that my condition can be diagnosed by my doctor accurately.
+  FEATURE: A ‘Medical History’ page where you can view/add conditions.
   GIVEN: I am on the main app page
   WHEN: I click the ‘Medical History’ button
   THEN: I can add my pre-existing conditions
@@ -31,17 +34,18 @@ U9: As a user, I want to know my medical history so that my condition can be dia
   WHEN: I finish entering
   THEN: I can see an overview of my history
 
-U10: As a user, I want to know my medical history so that I can be aware of any side effects I may have after taking certain medications.
+U11: As a user, I want to know my medical history so that I can be aware of any side effects I may have after taking certain medications.
+  FEATURE: A notification about potential side effects of medications based on pre-existing medical conditions
   GIVEN: I am on the main app page
   WHEN: I click the ‘Medical History’ button
   THEN: I add the medications I am taking
   WHEN: The app identifies potential side effects
   THEN: I receive a notification alert about the risk
 
-U11: As a user, I want to know the severity of my symptoms so that I know when to see a doctor.
+U12: As a user, I want to know the severity of my symptoms so that I know when to see a doctor.
+  FEATURE: A notification of when to visit the doctor.
   GIVEN: I am on the ‘Medical History’ page
   WHEN: I enter my current conditions and symptoms
   THEN: The app matches the symptoms to the database
   WHEN: The condition is severe
   THEN: I receive a notification to see the doctor.
-
