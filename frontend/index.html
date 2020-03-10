@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Scrolling Nav - Start Bootstrap Template</title>
+  <title>MyMed Home</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -44,7 +44,7 @@
             <a class="nav-link js-scroll-trigger" href="#contact">Encyclopaedia</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#contact">Pharmacies Near Me</a>
+            <a class="nav-link js-scroll-trigger" href="#localPharms">Pharmacies Near Me</a>
           </li>
 
         </ul>
@@ -122,8 +122,38 @@
       <li>30</li>
       <li>31</li>
     </ul>
+
+    <form class="wrapper" action="addReminder.html">
+        <button type="submit" class="btn btn-outline-success reminder">Add Reminder</button>
+    </div>
+
   </section>
 
+  <section id="localPharms">
+    <div class="searchBar">
+    <!-- Load icon library -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+      <!-- The form -->
+      <h1>Search by Name</h1>
+      <form class="example" action="searchName.html">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+
+    <div class="searchBar">
+    <!-- Load icon library -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <div>
+      <!-- The form -->
+      <h1>Search by UDI</h1>
+      <form class="example" action="searchUDI.html">
+        <input type="text" placeholder="Search.." name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+  </section>
 
   <section id="about">
     <div class="container">
