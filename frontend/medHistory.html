@@ -64,15 +64,25 @@
         <div class="input-group mb-3 input-group-lg" style="max-width: 50%; float: left; padding: 20px;">
           <input type="text" class="form-control" placeholder="Pre-existing Medical Condition" aria-label="Pre-existing Medical Condition" aria-describedby="button-addon2">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="addCondition()">Add</button>
           </div>
+          <script type="text/javascript">
+            function addCondition() {
+              alert("Considering your medical history and this symptom we recommend you seek immediate medical care.")
+            }
+          </script>
         </div>
 
         <div class="input-group mb-3 input-group-lg" style="max-width: 50%; float: right; padding: 20px;">
           <input type="text" class="form-control" placeholder="New Medication" aria-label="New Medication" aria-describedby="button-addon2">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Add</button>
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="addMedication()">Add</button>
           </div>
+          <script type="text/javascript">
+            function addMedication() {
+              alert("Considering your medical history, current medications and potential side effects of this medication you may experience:\n\n- Difficulty Breathing\n- Loss of Appetitie")
+            }
+          </script>
         </div>
       </div>
     </div>
