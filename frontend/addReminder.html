@@ -8,7 +8,7 @@
 <meta name="author" content="Colorlib">
 <meta name="keywords" content="Colorlib Templates">
 
-<title>Au Register Forms by Colorlib</title>
+<title>MyMed Add Reminder</title>
 
 <link href="./Au Register Forms by Colorlib_files/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 <link href="./Au Register Forms by Colorlib_files/font-awesome.min.css" rel="stylesheet" media="all">
@@ -19,9 +19,11 @@
 <link href="./Au Register Forms by Colorlib_files/daterangepicker.css" rel="stylesheet" media="all">
 
 <link href="./Au Register Forms by Colorlib_files/main.css" rel="stylesheet" media="all">
+<link rel="icon" href="images/logo.png">
+
 </head>
 <body>
-<div class="page-wrapper bg-red p-t-180 p-b-100 font-robo">
+<div class="page-wrapper bg-blue p-t-180 p-b-100 font-robo">
 <div class="wrapper wrapper--w960">
 <div class="card card-2">
 <div class="card-heading"></div>
@@ -29,41 +31,28 @@
 <h2 class="title">Add Reminder</h2>
 <form method="POST">
 <div class="input-group">
-<input class="input--style-2" type="text" placeholder="Name" name="name">
+
+<input class="input--style-2" type="text" placeholder="Drug Name" name="drug" required>
 </div>
 <div class="row row-space">
 <div class="col-2">
 <div class="input-group">
-<input class="input--style-2 js-datepicker" type="text" placeholder="Birthdate" name="birthday">
-<i class="zmdi zmdi-calendar-note input-icon js-btn-calendar"></i>
-</div>
-</div>
-<div class="col-2">
-<div class="input-group">
-<div class="rs-select2 js-select-simple select--no-search">
-
-</select><span class="select2 select2-container select2-container--default" dir="ltr" style="width: 68.6667px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-gender-ux-container"><span class="select2-selection__rendered" id="select2-gender-ux-container" title="Gender">Gender</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-<div class="select-dropdown"></div>
-</div>
-</div>
-</div>
+<p class="heading">From: </p>
+<input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date1" required>
 </div>
 <div class="input-group">
-<div class="rs-select2 js-select-simple select--no-search">
-
-
-<div class="select-dropdown"></div>
+<p class="heading">To: </p>
+<input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date2" required>
 </div>
-</div>
-<div class="row row-space">
-<div class="col-2">
 <div class="input-group">
-<input class="input--style-2" type="text" placeholder="Registration Code" name="res_code">
+<p class="heading">Times: </p>
+<input class="input--style-2" type="time" id="appt" name="appt" required>
 </div>
 </div>
 </div>
+
 <div class="p-t-30">
-<button class="btn btn--radius btn--green" type="submit">Search</button>
+<button class="btn btn--radius btn--green" type="submit">Add</button>
 </div>
 </form>
 </div>

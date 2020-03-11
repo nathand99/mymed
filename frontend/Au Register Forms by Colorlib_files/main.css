@@ -228,11 +228,11 @@ h6 {
 }
 
 .btn--green {
-  background: #57b846;
+  background: #4db8ff;
 }
 
 .btn--green:hover {
-  background: #4dae3c;
+  background: #0099ff;
 }
 
 /* ==========================================================================
@@ -449,6 +449,11 @@ input {
   margin-bottom: 37px;
 }
 
+.heading {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
 /* ==========================================================================
    #CARD
    ========================================================================== */
@@ -472,7 +477,7 @@ input {
 }
 
 .card-2 .card-heading {
-  background: url("../images/bg-heading-02.jpg") top left/cover no-repeat;
+  background: url("../images/meds2.jpg") top left/cover no-repeat;
   width: 29.1%;
   display: table-cell;
 }
