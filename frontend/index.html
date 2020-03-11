@@ -176,8 +176,24 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 mx-auto">
-          <h2>Services we offer</h2>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut optio velit inventore, expedita quo laboriosam possimus ea consequatur vitae, doloribus consequuntur ex. Nemo assumenda laborum vel, labore ut velit dignissimos.</p>
+          <h2>News articles</h2>
+          <div class="searchBar">
+            <!-- Load icon library -->
+              <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+              <div>
+              <!-- search form-->
+              <h1>Search news articles</h1>
+              <form class="example" action="news.html">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+                <label for="Sort by">Sort by:</label>
+                <select id="sort by" name="sort by">
+                  <option value="date">Date</option>
+                  <option value="number of references">Number of references</option>
+                  <option value="number of views">Number of views</option>
+                </select>
+              </form>
+            </div>
         </div>
       </div>
     </div>
