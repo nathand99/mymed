@@ -1,51 +1,187 @@
-There is no clear consistent message from news sources (DailyMail, 7News, The Guardian, etc) causing people to be over/under cautious.
-U1: As a user, I want to attain my information only through credible resources with backed-up data to avoid misinformation.
-U2: As a user, I want to be able to access all credible sources in one location so that I am as well-informed as possible.
+ 
 
-Some patients have died from being unaware of drug effects/ ingredients.
-U3: As a user, I want to be able to input my allergies into the system and be alerted of any medications I may take that have ingredients I am allergic to.
-U4: As a user, I want to be notified when I am taking a combination of drugs that are advised to not be used together. 
 
-Individuals are unable to afford medication advised to them even though there is a cheaper alternative they are unaware of.
-U5: As a user, I want to be able to compare prices of certain drugs across local stores to find the cheapest price.
-U6: As a user, I want to be able to find cheaper alternatives to certain drugs that have the same unique drug identifier (UDI).
 
+
+SENG 2021 - Weekly Cri Sesh - Deliverable 1
+Members 
+Nathan Driscoll, Shabrina Yusri, Sisil Harry Gunasekera, Sumeet Charan, Zoe Ramirez
+
+Table of Contents
+Part 1: Problem Statement
+Part 2: Identify and Describe User Stories
+High Level Requirements
+Complex Features
+Split into User Stories
+Part 3. Low-Fidelity Prototype
+Storyboard Interaction Graphs
+UI Component Sketches
+Storyboard Interaction + UI Component Sketches
+Part 4. High-Fidelity Prototype
+
+
+Part 1: Problem Statement
+There is no clear consistent message regarding diseases/ treatment from news sources causing people to be over/under cautious.
+Some patients have died from being unaware of the effects or ingredients of drugs they are taking.
+Patients are unable to afford medication advised to them even with cheaper alternatives they are unaware of.
 Patients struggle to keep track of when to take their medicines and what to take.
-U8: As a patient, I want to be reminded of when to take my medication so that I can stick to my medication schedule.
-  FEATURE: Adding reminders to take medications.
-  GIVEN: I am on the main app page
-  WHEN: I click on a calendar date
-  THEN: I can schedule when to take my medication
-  WHEN: I need to take my medication
-  THEN: I receive a notification reminder.
-  
-U9: As a patient, I want to see an overview of my medication schedule so that I can anticipate when to take them.
-  FEATURE: A calendar to view reminders.
-  GIVEN: I am on the main app page
-  THEN: I see my personal schedule
-
 Individuals are not up to date or aware of their current medical histories leading to health issues when diagnosing.
-U10: As a user, I want to know my medical history so that my condition can be diagnosed by my doctor accurately.
-  FEATURE: A ‘Medical History’ page where you can view/add conditions.
-  GIVEN: I am on the main app page
-  WHEN: I click the ‘Medical History’ button
-  THEN: I can add my pre-existing conditions
-  AND: I can add the medications I am currently taking
-  WHEN: I finish entering
-  THEN: I can see an overview of my history
+Part 2: Identify and Describe User Stories
+High Level Requirements
+Due to problem statement 1, we require that:
+HL1: As a user, I want access to news that shows all news articles based on a search term that can be sorted how I wish so that I am as well-informed as possible.
+Due to problem statement 2, we require that:
+HL2: As a user, I want access to an encyclopedia about all known drugs/ diseases and receive alerts if I am taking drugs that can endanger my health to avoid sickness/death.
+Due to problem statement 3, we require that:
+HL3: As a user, I want access to a map that will show me the prices of drugs at recognised chemists so that I can compare prices of drugs that will offer me the same help.
+Due to problem statement 4, we require that:
+HL4: As a user, I want to be able to track my medication and receive reminders about dosages so that I know what I am taking and when I should take it.
+Due to problem statement 5, we require that:
+HL5: As a user, I want to be able to keep track of my medical history so that I can diagnose and be aware of potential future issues.
 
-U11: As a user, I want to know my medical history so that I can be aware of any side effects I may have after taking certain medications.
-  FEATURE: A notification about potential side effects of medications based on pre-existing medical conditions
-  GIVEN: I am on the main app page
-  WHEN: I click the ‘Medical History’ button
-  THEN: I add the medications I am taking
-  WHEN: The app identifies potential side effects
-  THEN: I receive a notification alert about the risk
+Complex Features
+The high level features above are broken down into lower level features. This is shown in the next segment ‘Split into User Stories’ denoted by a code after the user story number. E.g. User Story 1 (HL1) denotes that User Story 1 is related to the high level requirement 1.
 
-U12: As a user, I want to know the severity of my symptoms so that I know when to see a doctor.
-  FEATURE: A notification of when to visit the doctor.
-  GIVEN: I am on the ‘Medical History’ page
-  WHEN: I enter my current conditions and symptoms
-  THEN: The app matches the symptoms to the database
-  WHEN: The condition is severe
-  THEN: I receive a notification to see the doctor.
+Split into User Stories
+User Story 1: (HL1)
+Feature: A news application on your dashboard that shows all news articles based on a search term.
+
+As a user, I want to attain my information in one location through credible resources with backed-up data so that I avoid misinformation.
+
+GIVEN: That I am on my home dashboard. 
+THEN: I am able to see the news application.
+WHEN: I click the ‘News’ button.
+THEN: I am able to search for a term.
+WHEN: I type a search term.
+AND: Press the search button.
+THEN: I will be given articles containing that term.
+
+User Story 2: (HL1)
+Feature: A drop down menu on the news application, allowing users to sort articles by date, number of references, viewer numbers.
+
+As a user, I want to be able to sort news sources by credibility and date so that I am as well-informed as possible.
+
+FEATURE: A drop down menu on the news application, allowing users to sort articles by date, number of references, viewer numbers.
+GIVEN: I am using the news application.
+THEN: I can select sorting filters using a drop down menu.
+WHEN: I select a filter.
+AND: I enter a term into the search.
+AND: I press the search button.
+THEN: I will be presented with results sorted in the chosen order.
+
+User Story 3: (HL2)
+Feature: A medical encyclopedia that allows for searches through an API/ database.
+
+As a patient I want to be able to access information about drugs so that I can gain knowledge about them.
+
+GIVEN: I am on the home dashboard.
+THEN: I am able to select the ‘encyclopedia’ button.
+WHEN: I select the ‘encyclopedia’ button.
+THEN: I am prompted with a search tool.
+WHEN: I enter a search term.
+AND: Press the search button.
+THEN: I will be shown a list of medications and diseases that are relevant to my search.
+WHEN: I am viewing the results of my search.
+THEN: I am able to select one of the results, showing me information about it.
+
+User Story 4: (HL2)
+Feature: An alert system for patients when they enter an unhealthy combination of drugs into their currently used medications.
+
+As a patient, I want to be notified when I am taking an unhealthy combination of drugs so that I avoid sickness/ death.
+
+GIVEN: I am using the ‘encyclopedia’ or the ‘calendar’ application.
+WHEN: I select a drug.
+AND: I have drug(s) in my recorded list of currently used medicines that should not be used in conjunction with the selected drug.
+THEN: I will be shown a pop-up alert after selecting the result, with an appropriate message.
+
+User Story 5: (HL2)
+Feature: An alert system for patients when they enter drug(s) that can trigger allergic reactions.
+
+As a patient, I want to be able to be alerted if a medication will set off an allergic reaction so that I avoid sickness/ death.
+
+GIVEN: I am using the ‘encyclopedia’ or the ‘calendar’ application.
+WHEN: I select a drug.
+AND: I have allergies or a condition that prevents me from using it that is recorded in the application.
+THEN: I will be shown a pop-up alert after selecting the result.
+
+User Story 6: (HL3)
+Feature: A ‘Local Chemist’ application that compares the prices of specified medications from chemists in a local radius based on a search term.
+
+As a user, I want to be able to compare prices of certain drugs across local stores so that I can find the cheapest price.
+
+GIVEN: I am on the home dashboard.
+THEN: I am able to select the ‘Local Chemist’ button.
+WHEN: I select the ‘Local Chemist’ application.
+THEN: I can enter a search term for a specific drug.
+WHEN: I press the search button.
+THEN: I am shown a drop down selection of drugs.
+WHEN: I select one of the drugs.
+THEN: I am shown the prices of the selected drug at local chemists in increasing order.
+
+User Story 7: (HL3)
+Feature: (above) ‘Local Chemist’ application can search by UDI
+
+As a user, I want to find drugs based on their unique drug identifier (UDI) so that I can find cheaper equivalent alternatives.
+
+GIVEN: I am using the ‘Local Chemist’ application.
+WHEN: I can enter a certain UDI into the search tool.
+AND: I press search.
+THEN: I am shown the prices of the drugs with the corresponding UDI at local chemists in increasing order.
+
+User Story 8: (HL4)
+Feature: Reminders to take medications
+
+As a patient, I want to be reminded of when to take my medication so that I can stick to my medication schedule.
+
+GIVEN: I am on the main application page.
+WHEN: I click on a calendar date.
+THEN: I can schedule when to take a specific medication.
+WHEN: I need to take my medication.
+THEN: I receive a notification reminder.
+
+User Story 9: (HL4)
+Feature: A calendar to view reminders
+
+As a patient, I want to see an overview of my medication schedule so that I can anticipate when to take them.
+
+GIVEN: I am on the main application page.
+THEN: I see my personal schedule.
+
+User Story 10: (HL5)
+Feature: A ‘Medical History’ page where you can view conditions.
+
+As a user, I want to know my medical history so that my condition can be diagnosed by my doctor accurately.
+
+GIVEN: I am on the main application page.
+WHEN: I click the ‘Medical History’ button
+THEN: I can add my pre-existing conditions.
+AND: I can add the medications I am currently taking
+WHEN: I finish entering
+THEN: I can see an overview of my history
+
+User Story 11: (HL5)
+Feature: A notification about potential side effects of medications based on pre-existing medical conditions.
+
+As a user, I want to know my medical history so that I can be aware of any side effects I may have after taking certain medications.
+
+GIVEN: I am on the main application page.
+WHEN: I click the ‘Medical History’ button
+THEN: I add the medications I am taking.
+WHEN: The application identifies potential side effects
+THEN: I receive a notification alert about the risk.
+
+User Story 12: (HL5)
+Feature: A notification of when to visit the doctor.
+
+As a user, I want to know the severity of my symptoms so that I know when to see a doctor.
+
+GIVEN: I am on the ‘Medical History’ page
+WHEN: I enter my current conditions and symptoms
+THEN: The application matches the symptoms to the database
+WHEN: The condition is severe
+THEN: I receive a notification to see the doctor.
+Part 3. Low-Fidelity Prototype
+Storyboard Interaction Graphs
+UI Component Sketches
+Storyboard Interaction + UI Component Sketches
+Part 4. High-Fidelity Prototype
