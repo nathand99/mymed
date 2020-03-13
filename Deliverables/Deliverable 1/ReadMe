@@ -3,4 +3,8 @@ Part 1 and 2 are written in the report.
 Screenshots of the Lo-fidelity prototype (Part 3a) and Hi-fidelity prototype (Part 3b) are contained in the report as well.
 
 The high-fidelity prototype is the folder called 'Hi-Fi Prototype'.
-To start it, open the 'index.html' file.
+To start it, open the 'index.html' file and you will be directed to the home screen.
+
+From the home screen, all buttons/navigation bars are functional and will lead you to the appropriate screen.
+However, on other screens the buttons/navigation bars are not functional yet as this Deliverable is a mockup.
+To go back to the home screen press back on your browser.
