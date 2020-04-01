@@ -73,6 +73,26 @@
               } else {
                 alert("Condition added");
               }
+              mhl = document.getElementById('medHistoryListing');
+              a = document.createElement('a');
+              a.setAttribute('href', "#");
+              a.setAttribute('class', 'list-group-item list-group-item-action flex-column align-items-start');
+              mhl.prepend(a);
+              d = document.createElement('div');
+              d.setAttribute('class', 'd-flex w-100 justify-content-between')
+              a.append(d);
+              h = document.createElement('h5');
+              h.setAttribute('class', 'mb-1');
+              h.innerText = document.getElementById('symptomInput').value;
+              d.append(h)
+              s = document.createElement('small');
+              s.setAttribute('class', 'text-muted');
+              s.innerText = 'Now';
+              d.append(s);
+              s = document.createElement('small');
+              s.setAttribute('class', 'text-muted');
+              s.innerText = 'General Symptom';
+              a.append(s);
             }
           </script>
         </div>
@@ -89,6 +109,26 @@
               } else {
                 alert("Medication added");
               }
+              mhl = document.getElementById('medHistoryListing');
+              a = document.createElement('a');
+              a.setAttribute('href', "#");
+              a.setAttribute('class', 'list-group-item list-group-item-action flex-column align-items-start');
+              mhl.prepend(a);
+              d = document.createElement('div');
+              d.setAttribute('class', 'd-flex w-100 justify-content-between')
+              a.append(d);
+              h = document.createElement('h5');
+              h.setAttribute('class', 'mb-1');
+              h.innerText = document.getElementById('medInput').value;
+              d.append(h)
+              s = document.createElement('small');
+              s.setAttribute('class', 'text-muted');
+              s.innerText = 'Now';
+              d.append(s);
+              s = document.createElement('small');
+              s.setAttribute('class', 'text-muted');
+              s.innerText = 'Medication';
+              a.append(s);
             }
           </script>
         </div>
