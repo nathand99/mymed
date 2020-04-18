@@ -29,33 +29,32 @@
 <div class="card card-2">
 <div class="card-heading"></div>
 <div class="card-body">
-<h2 class="title">Add Reminder</h2>
-<form method="POST">
-<div class="input-group">
+    <h2 class="title">Add Reminder</h2>
+    <form method="POST" action="index.html">
+        <div class="input-group">
+            <input class="input--style-2" type="text" placeholder="Drug Name" name="drug" >
+        </div>
+        <div class="row row-space">
+        <div class="col-2">
+        <div class="input-group">
+            <p class="heading">From: </p>
+            <input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date1" >
+        </div>
+        <div class="input-group">
+            <p class="heading">To: </p>
+            <input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date2" >
+        </div>
+        <div class="input-group">
+            <p class="heading">Times: </p>
+            <input class="input--style-2" type="time" id="appt" name="appt" >
+        </div>
+        </div>
+        </div>
 
-<input class="input--style-2" type="text" placeholder="Drug Name" name="drug" required>
-</div>
-<div class="row row-space">
-<div class="col-2">
-<div class="input-group">
-<p class="heading">From: </p>
-<input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date1" required>
-</div>
-<div class="input-group">
-<p class="heading">To: </p>
-<input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date2" required>
-</div>
-<div class="input-group">
-<p class="heading">Times: </p>
-<input class="input--style-2" type="time" id="appt" name="appt" required>
-</div>
-</div>
-</div>
-
-<div class="p-t-30">
-<button class="btn btn--radius btn--green" type="submit">Add</button>
-</div>
-</form>
+        <div class="p-t-30">
+            <button class="btn btn--radius btn--green" type="submit">Add</button>
+        </div>
+    </form>
 </div>
 </div>
 </div>
