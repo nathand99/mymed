@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+import sqlite3
 
 app = Flask(__name__)
 
@@ -28,7 +29,15 @@ def encyclopedia():
 
 @app.route("/medHistory.html", methods=['POST', 'GET'])
 def medicalHistory():
-	return render_template('medHistory.html')
+	conn = sqlite3.connect('history.db')
+	c = conn.cursor()
+	if request.method == 'POST':
+		c.execute('INSERT INTO drugs ("name", "description") VALUES({},{})'.format(name, description))
+
+	c.execute('SELECT * FROM drugs')
+	drugs = c.fetchall()
+	print(drugs)
+	return render_template('medHistory.html', medHis=drugs)
 
 @app.route("/medicine.html", methods=['POST', 'GET'])
 def medicine():
