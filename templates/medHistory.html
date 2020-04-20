@@ -63,29 +63,31 @@
         <div class="input-group mb-3 input-group-lg" style="max-width: 50%; float: left; padding: 20px;">
           <input type="text" class="form-control" id="symptomInput" placeholder="New Symptom or Medical Condition" aria-label="Pre-existing Medical Condition" aria-describedby="button-addon2">
           <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="addCondition()">Add</button>
+            <button class="btn btn-outline-primary" type="button" id="button-addon2" form="symptoms" name="submitSymptom">Add</button>
           </div>
         </div>
 
         <div class="input-group mb-3 input-group-lg" style="max-width: 50%; float: right; padding: 20px;">
           <form id="drugs" class="input-group mb-3 input-group-lg" action="{{ url_for('medicalHistory') }}" method="post">
-            <input type="text" class="form-control" id="medInput" placeholder="New Medication" aria-label="New Medication" aria-describedby="button-addon2">
+            <input type="text" class="form-control" name="drugInput" id="drugInput" placeholder="New Medication" aria-label="New Medication" aria-describedby="button-addon2">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit" id="button-addon2" form="drugs">Add</button>
+              <button class="btn btn-outline-primary" type="submit" id="button-addon2" form="drugs" name="submitDrug">Add</button>
             </div>
           </form>
         </div>
       </div>
     </div>
     <div class="container" style="display: inline;">
-      <div class="list-group" id="medHistoryListing" style="max-width: 90%; margin: 0 auto;">
-      <script src="static/js/medHistoryPopulate.js"></script>
-        {% for listing in medHis %}
-          <script type="text/javascript">
-            medHPop("{{ listing[1] }}", "{{ listing[3] }}", "{{ listing[2]}}")
-          </script>
-        {% endfor %}
-      </div>
+      <form id="medHListing" action="{{ url_for('medicalHistory') }}" method="post">
+        <div class="list-group" id="medHistoryListing" style="max-width: 90%; margin: 0 auto;">
+          <script src="static/js/medHistoryPopulate.js"></script>
+          {% for listing in medHis %}
+            <script type="text/javascript">
+              medHPop("{{ listing[0] }}", "{{ listing[1] }}", "{{ listing[4] }}", "{{ listing[2]}}")
+            </script>
+          {% endfor %}
+        </div>
+      </form>
     </div>
 
   </div>

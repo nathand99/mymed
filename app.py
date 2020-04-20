@@ -32,12 +32,23 @@ def medicalHistory():
 	conn = sqlite3.connect('history.db')
 	c = conn.cursor()
 	if request.method == 'POST':
-		c.execute('INSERT INTO drugs ("name", "description") VALUES({},{})'.format(name, description))
+		if request.form.get('submitDrug') != None:
+			newName = request.form.get("drugInput")
+			newDescription = "Painkiller"
+			newType = "Drug"
+			c.execute("INSERT INTO medHis ('name', 'description', 'type') VALUES('{}', '{}', '{}')".format(newName, newDescription, newType))
+		elif request.form.get('submitSymptom') != None:
+			pass
+		else:
+			medHisId = request.form.get('deleteButton')
+			c.execute("DELETE FROM medHis WHERE id={}".format(medHisId))
 
-	c.execute('SELECT * FROM drugs')
-	drugs = c.fetchall()
-	print(drugs)
-	return render_template('medHistory.html', medHis=drugs)
+	c.execute('SELECT * FROM medHis')
+	medH = c.fetchall()
+	medH.sort(key=lambda x: x[4])
+	conn.commit()
+	conn.close()
+	return render_template('medHistory.html', medHis=medH)
 
 @app.route("/medicine.html", methods=['POST', 'GET'])
 def medicine():
