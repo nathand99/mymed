@@ -61,10 +61,12 @@
     <div>
       <div class="container" style="margin-top: 25px;">
         <div class="input-group mb-3 input-group-lg" style="max-width: 50%; float: left; padding: 20px;">
-          <input type="text" class="form-control" id="symptomInput" placeholder="New Symptom or Medical Condition" aria-label="Pre-existing Medical Condition" aria-describedby="button-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-outline-primary" type="button" id="button-addon2" form="symptoms" name="submitSymptom">Add</button>
-          </div>
+          <form id="symptoms" class="input-group mb-3 input-group-lg" action="{{ url_for('medicalHistory') }}" method="post">
+            <input type="text" class="form-control" id="symptomInput" name="symptomInput" placeholder="New Symptom or Medical Condition" aria-label="Pre-existing Medical Condition" aria-describedby="button-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-primary" type="submit" id="button-addon2" form="symptoms" name="submitSymptom">Add</button>
+            </div>
+          </form>
         </div>
 
         <div class="input-group mb-3 input-group-lg" style="max-width: 50%; float: right; padding: 20px;">

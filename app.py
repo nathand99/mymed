@@ -38,7 +38,10 @@ def medicalHistory():
 			newType = "Drug"
 			c.execute("INSERT INTO medHis ('name', 'description', 'type') VALUES('{}', '{}', '{}')".format(newName, newDescription, newType))
 		elif request.form.get('submitSymptom') != None:
-			pass
+			newName = request.form.get("symptomInput")
+			newDescription = "General Symptom"
+			newType = "Symptom"
+			c.execute("INSERT INTO medHis ('name', 'description', 'type') VALUES('{}', '{}', '{}')".format(newName, newDescription, newType))
 		else:
 			medHisId = request.form.get('deleteButton')
 			c.execute("DELETE FROM medHis WHERE id={}".format(medHisId))
