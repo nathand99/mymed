@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
+import wikipedia
 
 app = Flask(__name__)
 
@@ -34,7 +35,7 @@ def medicalHistory():
 	if request.method == 'POST':
 		if request.form.get('submitDrug') != None:
 			newName = request.form.get("drugInput")
-			newDescription = "Painkiller"
+			newDescription = wikipedia.summary(newName, sentences=3)
 			newType = "Drug"
 			c.execute("INSERT INTO medHis ('name', 'description', 'type') VALUES('{}', '{}', '{}')".format(newName, newDescription, newType))
 		elif request.form.get('submitSymptom') != None:
