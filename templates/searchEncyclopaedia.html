@@ -17,11 +17,50 @@
   <!-- Custom styles for this template -->
   <link href="static/css/scrolling-nav.css" rel="stylesheet">
   <link rel="icon" href="../static/images/logo.png">
+  <script src = "static/js/p5.js"></script>
+  <script src = "static/js/p5.sound.js"></script>
 
 </head>
 
 <body id="page-top">
 
+  <script>
+    let searchUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=';
+    let contentUrl = 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=';
+
+    let userInput;
+
+    function setup() {
+      //console.log("In setup()");
+      userInput = select('#userinput');
+      userInput.changed(goWiki);
+
+      function goWiki(){
+        console.log("In goWiki()");
+        let term = userInput.value();
+        let url =  searchUrl + term;
+        window.document.location = './encyclopedia.html' + '?query=' + term;
+        loadJSON(url, gotSearch, 'jsonp');
+        //console.log(url);
+      }
+
+      function gotSearch(data){
+        //console.log("In gotSearch()");
+        //console.log(data);
+        pages = new Array(data[1][0], data[1][1], data[1][2]);
+        urls = new Array(data[3][0], data[3][1], data[3][2]);
+        pageData = new Array(pages, urls);
+        //console.log(pageData);
+        //let page1 = curPage.replace(/\s+/g, '_');
+        //loadJSON(url, gotContent, 'jsonp');
+        //console.log(page1);
+      }
+
+      function gotContent(data){
+        //console.log(data);
+      }
+    }
+  </script>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
@@ -62,8 +101,10 @@
           <h2>Encyclopedia</h2>
           <p>Search our encyclopedia for information on drugs and diseases</p>
           <h1>Search encyclopedia</h1>
-          <form class="example" action="encyclopedia.html">
-            <input type="text" placeholder="Search.." name="search"></input>
+
+
+          <form class="example" method = "get" onsubmit="setup(); return false;"> <!--action="encyclopedia.html"-->
+            <input type="text" placeholder="Search.." name="search" id="userinput"></input>
             <button type="submit"><i class="fa fa-search"></i></button>
           </form>
         </div>
