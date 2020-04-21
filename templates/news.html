@@ -21,6 +21,7 @@
 
   <!-- Custom styles for this template -->
   <link href="static/css/scrolling-nav.css" rel="stylesheet">
+  <link href="static/css/news.css" rel="stylesheet">
 
 </head>
 
@@ -63,26 +64,91 @@
     </div>
   </header>
   <br>
-  <div id = "text1">
-    <h1>Showing results for: "coronavirus"</h1>
-  </div>
-  <div id = "text1">
-    <a href="https://www.abc.net.au/news/2020-04-01/retired-nurses-doctors-pharmacists-recalled-to-fight-coronavirus/12109608">1. Retired nurses, doctors, pharmacists to be re-instated to help fight coronavirus</a>
-        <p>MyMed Verified Website, ABC News, 2 Hours Ago </p>
-  </div>
-  <div id = "text1">
-    <a href="https://www.abc.net.au/news/2020-04-01/coronavirus-chinese-ppe-border-force-intercepted/12085908">2. Australia seizes faulty coronavirus protective equipment imported from China</a>
-        <p>MyMed Verified Website, ABC News, 3 Hours Ago </p>
-  </div>
-  <div id = "text1">
-    <a href="https://www.washingtonpost.com/world/2020/04/01/coronavirus-latest-news/">3. Live updates: Trump projects at least 100,000 coronavirus deaths in U.S.; European markets slump</a>
-        <p>Not Verified Wesbite, Washington Post, 52 minutes ago</p>
-  </div>
-  <div id = "text1">
-    <a href="https://www.news.com.au/world/coronavirus/global/covid19-how-china-controlled-the-coronavirus-pandemic/news-story/bdd808e9efefbb7338b2d2544ee58a57">4. COVID-19: How China controlled the coronavirus pandemic</a>
-        <p>MyMed BLACKLISTED, news.com.au, 2 days ago</p>
-  </div>
+  <div>
+      <h1 id = "results">Showing results for: "coronavirus"</h1>
+    </div>
+    <div id="container">
+      
+    </div>
+  <script>
+    let queryTerm = document.location.search;  //getting query term from url
+    //queryTerm = queryTerm.replace(/%20/g,' ');  //getting query term from url
+    queryTerm = queryTerm.split("&")
+    queryTerm = queryTerm[0].split("=")
+    //queryTerm = queryTerm[0].split("=")
+    console.log(queryTerm[1]);
+    let sortby = document.location.search.split("=")
+    console.log(sortby[2])
+    const result = document.getElementById("results")
+    result.innerHTML = "Showing results for: " + queryTerm[1];
+    var url = 'http://newsapi.org/v2/everything?' +
+          'q=' + queryTerm[1] + '&' +
+          'from=2020-04-01&' +
+          'sortBy=' + sortby + '&' +
+          'apiKey=a3dd638d91ef45719645d93de7a53f59';
 
+    var req = new Request(url);
+
+    fetch(req)
+    .then(response => {
+        return response.json();
+      }).then((json) => {
+        let i = 0;
+        const c = document.getElementById("container")
+        c.setAttribute("class", "display")
+        while (json.articles[i]) {         
+          // container
+          const article = document.createElement("div")
+          article.setAttribute("class", "article");
+          article.setAttribute("class", "row");
+          article.setAttribute("style", "padding:10px");
+          c.appendChild(article)
+          // image
+          const imgdiv = document.createElement("div")
+          imgdiv.setAttribute("class", "col-md-3");
+          const img = document.createElement("img")
+          img.src = json.articles[i].urlToImage;
+          imgdiv.appendChild(img)
+          article.appendChild(imgdiv)
+          // title
+          const textdiv = document.createElement("div")
+          textdiv.setAttribute("class", "col-md-7");
+          const link = document.createElement("a")
+          link.setAttribute("style", "font-size:30px")
+          link.setAttribute("target", "_blank")      
+          link.innerHTML = json.articles[i].title
+          link.href = json.articles[i].url
+          textdiv.appendChild(link)
+          // description
+          const h5 = document.createElement("h5")
+          let text = document.createTextNode(json.articles[i].description)
+          h5.appendChild(text)
+          textdiv.appendChild(h5)  
+          article.appendChild(textdiv)     
+          // source
+          const source = document.createElement("p")
+          source.innerHTML = json.articles[i].source.name
+          textdiv.appendChild(source)  
+          // time
+          const time = document.createElement("p")
+          let clock = json.articles[i].publishedAt.split("T")
+          let text1 = document.createTextNode(clock[0])
+          let text2 = clock[1].split("Z")
+          let text3 = document.createTextNode(text2[0])
+          let text4 = document.createTextNode("    ")
+          time.appendChild(text3)
+          time.appendChild(text4)
+          time.appendChild(text1)         
+          textdiv.appendChild(time)  
+          i++;
+        }
+        //console.log(json.articles[0])
+      })
+
+  </script>
+
+  
+  
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
