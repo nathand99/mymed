@@ -8,10 +8,13 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <style>
-  #text1 {
-    padding-left: 30px;
-    font-family: "Trebuchet MS", Helvetica, sans-serif;
-  }
+  #dis1 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
+  #dis2 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
+  #dis3 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
+  #link1 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
+  #link2 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
+  #link3 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
+
   </style>
 
   <title>MyMed - Encylopedia</title>
@@ -26,6 +29,50 @@
 
 <body id="page-top">
 
+<script src = "static/js/p5.js"></script>
+<script src = "static/js/p5.sound.js"></script>
+<script>
+  let queryTerm = document.location.search.replace(/^.*?\=/,'');  //getting query term from url
+  console.log(queryTerm);
+  queryTerm = queryTerm.replace(/%20/g,' ');  //getting query term from url
+  console.log(queryTerm);
+  let searchUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=';
+  let contentUrl = 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=';
+
+  setup();  //calling function to do search
+
+  function setup() {
+    //console.log("In setup()");
+    labelChange();
+    let url =  searchUrl + queryTerm;
+    loadJSON(url, gotSearch, 'jsonp');
+    //console.log(url);
+  }
+
+  function gotSearch(data){
+    //console.log("In gotSearch()");
+    console.log(data);
+    pages = new Array(data[1][0], data[1][1], data[1][2]);
+    urls = new Array(data[3][0], data[3][1], data[3][2]);
+    pageData = new Array(pages, urls);
+    document.getElementById("dis1").innerHTML = "1. " + pageData[0][0];
+    document.getElementById("dis2").innerHTML = "2. " + pageData[0][1];
+    document.getElementById("dis3").innerHTML = "3. " + pageData[0][2];
+    document.getElementById("dis1").href = pageData[1][0];
+    document.getElementById("dis2").href = pageData[1][1];
+    document.getElementById("dis3").href = pageData[1][2];
+    document.getElementById("link1").innerHTML = "Diseases related to: '" + queryTerm + "'";
+    document.getElementById("link2").innerHTML = "Diseases related to: '" + queryTerm + "'";
+    document.getElementById("link3").innerHTML = "Diseases related to: '" + queryTerm + "'";
+    //console.log(pageData);
+  }
+
+  function labelChange(){
+    document.getElementById("diseaseHeading").innerHTML = "Diseases related to: '" + queryTerm + "'";
+    document.getElementById("medicalHeading").innerHTML = "Medications related to: '" + queryTerm + "'";
+  }
+
+</script>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <div class="container">
@@ -66,18 +113,18 @@
 
   <div>
     <br>
-    <h1 id = "text1">Diseases related to: "coronavirus"</h1>
+    <h1 id = "diseaseHeading" ></h1>
   </div>
   <div>
-    <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank" id = "text1">1. COVID-19 (Novel Coronavirus)</a>
-        <p id = "text1">MyMed Verified Wesbite, 20000 Viewers, Updated 01/04/2020</p>
-    <a href="https://www.who.int/csr/sars/en/" target="_blank" id = "text1">2. SARS (Severe Acute Respiratory Syndrome) Coronavirus</a>
-        <p id = "text1">MyMed Verified Wesbite, 3000 Viewers, Updated 20/02/2020</p>
-    <a id = "text1" href="https://www.who.int/news-room/fact-sheets/detail/middle-east-respiratory-syndrome-coronavirus-(mers-cov)" target="_blank">3. MERS (Middle East Respiratory Syndrome) Coronavirus</a>
-        <p id = "text1">MyMed Verified Wesbite, 180 Viewers, Updated 12/02/2019</p>
+    <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank" id = "dis1">1. COVID-19 (Novel Coronavirus)</a>
+        <p id = "link1">filler</p>
+    <a href="https://www.who.int/csr/sars/en/" target="_blank" id = "dis2">2. SARS (Severe Acute Respiratory Syndrome) Coronavirus</a>
+        <p id = "link2">filler</p>
+    <a id = "dis3" href="https://www.who.int/news-room/fact-sheets/detail/middle-east-respiratory-syndrome-coronavirus-(mers-cov)" target="_blank">3. MERS (Middle East Respiratory Syndrome) Coronavirus</a>
+        <p id = "link3">filler</p>
   </div>
   <div>
-    <h1 id = "text1">Medications related to: "coronavirus"</h1>
+    <h1 id = "medicalHeading"></h1>
   </div>
   <div class="col-lg-4 col-md-6 mb-4" id = "text1">
         <div class="card h-100">
