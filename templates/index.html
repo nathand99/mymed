@@ -438,6 +438,7 @@
         <div>
       <div id="calendar"></div>
       <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+      <script src="static/js/p5.js"></script>
       <script src="static/json/data.json">
 
           !function() {
@@ -762,7 +763,25 @@
           }();
 
           !function() {
-            var myData = JSON.parse(data);
+              function readTextFile(file, callback) {
+                  var rawFile = new XMLHttpRequest();
+                  rawFile.overrideMimeType("application/json");
+                  rawFile.open("GET", file, true);
+                  rawFile.onreadystatechange = function() {
+                      if (rawFile.readyState === 4 && rawFile.status == "200") {
+                          callback(rawFile.responseText);
+                      }
+                  }
+                  rawFile.send(null);
+              }
+
+              //usage:
+              readTextFile("static/json/data.json", function(text){
+                  var myData = JSON.parse(text);
+                  console.log(data);
+                  var calendar = new Calendar('#calendar', myData.entities);
+
+              });
             //console.log (myData.entities);
 
 
@@ -770,7 +789,6 @@
 
             }
 
-            var calendar = new Calendar('#calendar', myData.entities);
 
           }();
 
