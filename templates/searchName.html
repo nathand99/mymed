@@ -18,6 +18,15 @@
   <link href="static/css/shop-homepage.css" rel="stylesheet">
   <link rel="icon" href="../static/images/logo.png">
 
+  <style>
+    #map {
+        height: 500px;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -152,6 +161,23 @@
               </div>
             </div>
           </div>
+
+          <div id = "map"></div>
+
+          <script>
+              function initMap() {
+                  var location = {lat: -33.917347, lng: 151.2290788};
+                  var map = new google.maps.Map(document.getElementById("map"), {
+                      zoom: 15,
+                      center: location
+                  });
+                  var marker = new google.maps.Marker({
+                      position: location,
+                      map: map
+                  });
+              }
+          </script>
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWeQqmIBeMj0-HG79MNSNZe8Uxogxx8f4&callback=initMap"></script>
 
         </div>
         <!-- /.row -->
