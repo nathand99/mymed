@@ -53,7 +53,7 @@
               <a class="nav-link js-scroll-trigger" href="searchNews.html">Medical News</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="searchEncyclopaedia.html">Encyclopaedia</a>
+              <a class="nav-link js-scroll-trigger" href="searchEncyclopaedia.html">Encyclopedia</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="searchPriceCompare.html">Price Compare</a>
@@ -87,7 +87,7 @@
         let i = 0;
         const c = document.getElementById("container")
         c.setAttribute("class", "display")
-        for (i = 0; i < 6; i++) {         
+        for (i = 0; i < 6; i++) {
           // container
           const product = document.createElement("div")
           product.setAttribute("class", "product");
@@ -106,7 +106,7 @@
           textdiv.setAttribute("class", "col-md-7");
           const hlink = document.createElement("a")
           hlink.setAttribute("style", "font-size:30px")
-          hlink.setAttribute("target", "_blank")      
+          hlink.setAttribute("target", "_blank")
           hlink.innerHTML = data.shopping_results[i].title
           hlink.href = data.shopping_results[i].link
           textdiv.appendChild(hlink)
@@ -114,8 +114,8 @@
           const price = document.createElement("h3")
           let pricetext = document.createTextNode(data.shopping_results[i].price)
           price.appendChild(pricetext)
-          textdiv.appendChild(price)  
-          product.appendChild(textdiv)   
+          textdiv.appendChild(price)
+          product.appendChild(textdiv)
           // source
           const source = document.createElement("p")
           source.innerHTML = data.shopping_results[i].source
@@ -124,8 +124,8 @@
           const desc = document.createElement("h5")
           let text = document.createTextNode(data.shopping_results[i].snippet)
           desc.appendChild(text)
-          textdiv.appendChild(desc)  
-          product.appendChild(textdiv)     
+          textdiv.appendChild(desc)
+          product.appendChild(textdiv)
         }
       }
           getData();
@@ -151,7 +151,7 @@
                 center: center,
                 zoom: 15
               });
-            
+
               request = {
                 location: center,
                 radius: 8000,
@@ -196,7 +196,7 @@
               });
               return marker;
             }
-          
+
             function clearResults(markers) {
               for (var m in markers) {
                 markers[m].setMap(null)
@@ -206,7 +206,7 @@
             google.maps.event.addDomListener(window, 'load', initialise);
           </script>
 
-        
+
         </div>
         <!-- /.row -->
 

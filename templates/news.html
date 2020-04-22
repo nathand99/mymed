@@ -48,7 +48,7 @@
               <a class="nav-link js-scroll-trigger" href="searchNews.html">Medical News</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="searchEncyclopaedia.html">Encyclopaedia</a>
+              <a class="nav-link js-scroll-trigger" href="searchEncyclopaedia.html">Encyclopedia</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="searchPriceCompare.html">Price Compare</a>
@@ -75,14 +75,14 @@
         <option value="relevancy">Relevance</option>
         <option value="popularity">Popularity</option>
       </select>
-      
+
     </form>
   </div>
   <div>
       <h1 id = "results">Showing results for: "coronavirus"</h1>
     </div>
     <div id="container">
-      
+
     </div>
   <script>
     let queryTerm = document.location.search;  //getting query term from url
@@ -111,7 +111,7 @@
         let i = 0;
         const c = document.getElementById("container")
         c.setAttribute("class", "display")
-        while (json.articles[i]) {         
+        while (json.articles[i]) {
           // container
           const article = document.createElement("div")
           article.setAttribute("class", "article");
@@ -130,7 +130,7 @@
           textdiv.setAttribute("class", "col-md-7");
           const link = document.createElement("a")
           link.setAttribute("style", "font-size:30px")
-          link.setAttribute("target", "_blank")      
+          link.setAttribute("target", "_blank")
           link.innerHTML = json.articles[i].title
           link.href = json.articles[i].url
           textdiv.appendChild(link)
@@ -138,12 +138,12 @@
           const h5 = document.createElement("h5")
           let text = document.createTextNode(json.articles[i].description)
           h5.appendChild(text)
-          textdiv.appendChild(h5)  
-          article.appendChild(textdiv)     
+          textdiv.appendChild(h5)
+          article.appendChild(textdiv)
           // source
           const source = document.createElement("p")
           source.innerHTML = json.articles[i].source.name
-          textdiv.appendChild(source)  
+          textdiv.appendChild(source)
           // time
           const time = document.createElement("p")
           let clock = json.articles[i].publishedAt.split("T")
@@ -153,8 +153,8 @@
           let text4 = document.createTextNode("    ")
           time.appendChild(text3)
           time.appendChild(text4)
-          time.appendChild(text1)         
-          textdiv.appendChild(time)  
+          time.appendChild(text1)
+          textdiv.appendChild(time)
           i++;
         }
         //console.log(json.articles[0])
@@ -162,8 +162,8 @@
 
   </script>
 
-  
-  
+
+
 
   <!-- Footer -->
   <footer class="py-5 bg-dark">
