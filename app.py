@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 import json
 from datetime import datetime, timedelta
 import sqlite3
-import wikipedia
-import requests
+#import wikipedia
+#import requests
 
 app = Flask(__name__)
 
@@ -17,10 +17,20 @@ def homeReroute():
 
 @app.route("/addReminder.html", methods=['POST', 'GET'])
 def addReminder():
+	conn = sqlite3.connect('reminders.db')
+	c = conn.cursor()
+	c.execute('SELECT * from rem')
+	result = c.fetchall()
+	#print (result)
+	for row in result:
+		#eventName, date, time = row
+		print ("{} {} {}".format(row[0], row[1], row[2]))
+
 	if request.method== "POST":
         #if request.form["username"]
 		date1 = request.form["date1"]
 		date2 = request.form["date2"]
+		print (request.form["appt"])
 
 		date1_object = datetime.strptime(date1, '%d/%m/%Y')
 		date2_object = datetime.strptime(date2, '%d/%m/%Y')
@@ -28,23 +38,27 @@ def addReminder():
 
 		while date1_object != date2_object:
 			formatDate = date1_object.strftime('%Y-%m-%d')
-			#while date1_object != (date2_object += datetime.timedelta(days=1)):
-
-			with open('static/json/data.json') as json_file:
-				data = json.load(json_file)
-				temp = data['entities']
-				y = dict()
-				y["eventName"] = request.form["drug"]
-				y["calendar"] = "Work"
-				y["color"] = "orange"
-				y["date"] = formatDate
-			    # appending data to emp_details
-				temp.append(y)
-			with open('static/json/data.json','w') as f:
-				json.dump(data, f, indent=4)
+			# with open('static/json/data.json') as json_file:
+			# 	data = json.load(json_file)
+			# 	temp = data['entities']
+			# 	y = dict()
+			# 	y["eventName"] = request.form["drug"]
+			# 	y["calendar"] = "Work"
+			# 	y["color"] = "orange"
+			# 	y["date"] = formatDate
+			#     # appending data to emp_details
+			# 	temp.append(y)
+			# with open('static/json/data.json','w') as f:
+			# 	json.dump(data, f, indent=4)
+			c.execute("INSERT INTO rem ('eventName', 'date', 'time') VALUES('{}', '{}', '{}')".format(request.form["drug"], formatDate, request.form["appt"]))
 			date1_object += timedelta(days=1)
+			conn.commit()
+			#conn.close()
 
 		return redirect(url_for('home'))
+
+
+		conn.close()
 	return render_template('addReminder.html')
 
 @app.route("/alert.html", methods=['POST', 'GET'])
