@@ -4,12 +4,6 @@
             "eventName": "Take Panadol @ 18:00",
             "calendar": "Medicine",
             "color": "green",
-            "date": "2020-04-25"
-        },
-        {
-            "eventName": "Take Panadol @ 18:00",
-            "calendar": "Medicine",
-            "color": "green",
             "date": "2020-04-11"
         },
         {
@@ -29,6 +23,12 @@
             "calendar": "Medicine",
             "color": "green",
             "date": "2020-05-04"
+        },
+        {
+            "eventName": "Appointment w/ Dr. Pearson @ 15:00",
+            "calendar": "Medicine",
+            "color": "green",
+            "date": "2020-04-14"
         }
     ]
 }
