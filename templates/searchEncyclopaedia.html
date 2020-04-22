@@ -10,7 +10,7 @@
 
   <title>MyMed - Encyclopedia</title>
   <style>
-    #helperText {color: black;}
+    #helperText {color: black; text-align: justify;}
   </style>
   <!-- Bootstrap core CSS -->
   <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -97,6 +97,7 @@
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
           <!-- The form -->
           <h1>Encyclopedia Search: </h1><br>
+          <p id = "helperText">Search our encyclopedia for information on drugs and diseases. <br><br></p>
           <form class="example" onsubmit="setup();">
             <p><b>Filter searches by:</b></p>
             <input type="radio" id="medRadio" name="option" value="male">
@@ -118,8 +119,8 @@
             <input type="text" placeholder="Search.." name="search" id="userinput"></input>
             <button type="submit"><i class="fa fa-search"></i></button>
             <br><br><br>
-            <p id = "helperText">Search our encyclopedia for information on drugs and diseases. <br><br><br>
-              <u>Need Help?</u> <br> Please press one of the buttons to search by medication or diseases. Also make sure you are typing 3 or more letters in the text box labelled 'Search..'. Then press the search button. The top results, sorted by popularity will be shown to you.</p>
+            <p id = "helperText">
+              <u><br><br>Need Help?</u> <br>The encyclopedia stores all our articles about drugs and diseases, meaning you can get all the information about any specific medical term! <br>Press one of the buttons to search by medication or by diseases. Then choose the number of results you want to see. Also make sure you are typing 3 or more letters in the text box labelled 'Search..', then press the 'magnifying glass' button. The top results, sorted by popularity will be shown to you.</p>
             <br><br>
           </form>
         </div>

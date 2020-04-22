@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+  <style>
+    #helperText {color: black; text-align: justify;}
+  </style>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -68,7 +71,7 @@
               <h1>Search medical news articles</h1>
               <form class="example" action="news.html">
                 <input type="text" placeholder="Search.." name="search">
-                <button type="submit"><i class="fa fa-search"></i></button>
+                <button type="submit"><i class="fa fa-search"></i></button><br>
                 <!-- sort by button-->
                 <label for="Sort by">Sort by:</label>
                 <select id="sortby" name="sort by">
@@ -76,7 +79,14 @@
                   <option value="relevancy">Relevance</option>
                   <option value="popularity">Popularity</option>
                 </select>
-              </form>
+              </form><br><br><br>
+              <p id = "helperText">
+                <u>Need Help?</u><br>To avoid 'fake news' use our 'Medical News' section to get data from trusted news sources!<br>
+                To use it, type a term you would like to see news articles about like 'swine flu' in the text box labelled 'Search..' above.
+                Select an option from the drop down menu to choose how to sort your results. This can be done either by relevance, date or popularity.
+                Press the magnifying glass to view your results. Once results are shown, click on an article's name to view more information about it!
+                </p>
+              <br><br>
             </div>
 
         </div>
