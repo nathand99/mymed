@@ -8,9 +8,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <style>
-  #infotext { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #dis1, #dis2, #dis3, #dis4, #dis5, #dis6, #dis7, #dis8, #dis9, #dis10 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #diseaseHeading { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
+  #infotext {padding-left: 20%; font-family: "Trebuchet MS", Helvetica, sans-serif; position: absolute;}
+  #dis1, #dis2, #dis3, #dis4, #dis5, #dis6, #dis7, #dis8, #dis9, #dis10 {padding-left: 20%; font-family: "Trebuchet MS", Helvetica, sans-serif; }
+  #diseaseHeading {padding-left: 20%; font-family: "Trebuchet MS", Helvetica, sans-serif; }
 
   </style>
 
@@ -80,9 +80,9 @@
   function labelChange(){
     let volume = localStorage.getItem('volume');
     if (volume == 'False'){
-      document.getElementById("diseaseHeading").innerHTML = "Information on diseases related to: '" + queryTerm + "'";
+      document.getElementById("diseaseHeading").innerHTML = "Results on diseases related to: '" + queryTerm + "'";
     } else {
-      document.getElementById("diseaseHeading").innerHTML = "Information on medications related to: '" + queryTerm + "'";
+      document.getElementById("diseaseHeading").innerHTML = "Results on medications related to: '" + queryTerm + "'";
     }
   }
 
@@ -127,10 +127,10 @@
 
   <div>
     <br>
-    <h1 id = "diseaseHeading" >Information on ... related to ...</h1>
+    <h1 id = "diseaseHeading" >Results on ... related to ...</h1>
   </div>
   <div>
-    <p id = "infotext">Click on a result to view more information from our trusted database.<br> Encylopedia results are sorted by the amount of other users visiting these pages.</p>
+    <p id = "infotext">Click on a result to view more information from our trusted database.<br> Encylopedia results are sorted by the amount of other users visiting these pages.</p><br><br><br>
     <a target="_blank" id = "dis1"></a><br>
     <a target="_blank" id = "dis2"></a><br>
     <a target="_blank" id = "dis3"></a><br>
