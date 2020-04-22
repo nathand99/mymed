@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 import wikipedia
+import requests
 
 app = Flask(__name__)
 
@@ -32,16 +33,39 @@ def encyclopedia():
 def medicalHistory():
 	conn = sqlite3.connect('history.db')
 	c = conn.cursor()
+	showMFlag=False
+	dFlag = False
+	mTitle = "Alert"
+	mContent = None
+	mToPop = None
 	if request.method == 'POST':
 		if request.form.get('submitDrug') != None:
-			newName = request.form.get("drugInput")
-			newDescription = wikipedia.summary(newName, sentences=3)
+			newName = request.form.get("drugInput").capitalize()
 			newType = "Drug"
-			c.execute("INSERT INTO medHis ('name', 'description', 'type') VALUES('{}', '{}', '{}')".format(newName, newDescription, newType))
+			try:
+				newDescription = wikipedia.summary(newName, sentences=1, auto_suggest=False).replace("'","")
+			except wikipedia.exceptions.PageError:
+				mTitle = "Error Finding Medication"
+				mContent = "The medication you entered was: " + newName + ".\n Please correct any potential spelling mistakes and retry."
+				showMFlag = True
+			except wikipedia.exceptions.DisambiguationError as e:
+				mTitle = "Please Specify Medication"
+				mContent = "The medication you entered was: " + newName + ".\n Please click the specific entry."
+				mToPop = e.options
+				print(mToPop)
+				dFlag = True
+				showMFlag = True
+			else:
+				c.execute("INSERT INTO medHis ('name', 'description', 'type') VALUES('{}', '{}', '{}')".format(newName, newDescription, newType))
 		elif request.form.get('submitSymptom') != None:
 			newName = request.form.get("symptomInput")
 			newDescription = "General Symptom"
 			newType = "Symptom"
+			c.execute("INSERT INTO medHis ('name', 'description', 'type') VALUES('{}', '{}', '{}')".format(newName, newDescription, newType))
+		elif request.form.get('mListingButton') != None:
+			newName = request.form.get("mListingButton").capitalize()
+			newType = "Drug"
+			newDescription = wikipedia.summary(newName, sentences=1, auto_suggest=False).replace("'","")
 			c.execute("INSERT INTO medHis ('name', 'description', 'type') VALUES('{}', '{}', '{}')".format(newName, newDescription, newType))
 		else:
 			medHisId = request.form.get('deleteButton')
@@ -52,7 +76,7 @@ def medicalHistory():
 	medH.sort(key=lambda x: x[4])
 	conn.commit()
 	conn.close()
-	return render_template('medHistory.html', medHis=medH)
+	return render_template('medHistory.html', medHis=medH, showModal=showMFlag, modalTitle=mTitle, disambiguationFlag=dFlag, modalContent=mContent, modalToPopulate=mToPop)
 
 @app.route("/medicine.html", methods=['POST', 'GET'])
 def medicine():
