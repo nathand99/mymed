@@ -10,7 +10,7 @@
 
   <title>MyMed - Encyclopaedia</title>
   <style>
-    #helperText {color: red;}
+    #helperText {color: black;}
   </style>
   <!-- Bootstrap core CSS -->
   <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,10 +33,16 @@
 
     function setup() {
       //console.log("In setup()");
+      console.log(document.getElementById('numResults').value);
       userInput = select('#userinput');
+      if (userInput.length < 2){
+        document.getElementById('helperText').style.color = "red";
+        document.getElementById('userinput').value = '';
+      }
       userInput.changed(goWiki);
 
       function goWiki(){
+        localStorage.setItem('numResults', document.getElementById('numResults').value);
         console.log("In goWiki()");
         let term = userInput.value();
         let termLength = term.length;
@@ -47,7 +53,7 @@
           localStorage.setItem('volume', 'False');
           window.document.location = './encyclopedia.html' + '?query=' + term;
         } else {
-          document.getElementById('helperText').innerHTML = "Please press one of the buttons to search by medication or diseases. Also make sure you are typing into the text box labelled 'Search..'";
+          document.getElementById('helperText').style.color = "red";
           document.getElementById('userinput').value = '';
         }
       }
@@ -90,16 +96,25 @@
             <!-- Load icon library -->
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
           <!-- The form -->
-          <h2>Encyclopedia</h2>
-          <p>Search our encyclopedia for information on drugs and diseases</p>
-          <p id = "helperText"></p>
-          <h1>Search encyclopedia</h1>
+          <h1>Encyclopedia Search: </h1><br>
+          <p id = "helperText">Search our encyclopedia for information on drugs and diseases. <br><br><u>Need Help?</u> <br> Please press one of the buttons to search by medication or diseases. Also make sure you are typing 3 or more letters in the text box labelled 'Search..'. Then press the search button.</p>
           <form class="example" onsubmit="setup();"> <!--action="encyclopedia.html"-->
             <p><b>Filter searches by:</b></p>
             <input type="radio" id="medRadio" name="option" value="male">
-            <label for="meds">Medication</label>
+            <label for="meds">Medication &emsp;</label>
             <input type="radio" id="disRadio" name="option" value="female">
-            <label for="diseases">Diseases</label><br>
+            <label for="diseases">Diseases</label><br><br>
+            <label for="cars">Choose number of results:</label>
+            <select id="numResults">
+              <option value="10">10</option>
+              <option value="9">9</option>
+              <option value="8">8</option>
+              <option value="7">7</option>
+              <option value="6">6</option>
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+            </select><br><br>
             <p><b>Enter a term to search for:</b></p>
             <input type="text" placeholder="Search.." name="search" id="userinput"></input>
             <button type="submit"><i class="fa fa-search"></i></button>
