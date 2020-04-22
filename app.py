@@ -88,7 +88,7 @@ def medicalHistory():
 	showMFlag=False
 	dFlag = False
 	mTitle = "Alert"
-	mContent = None
+	mContent = ""
 	mToPop = None
 	drugF = False
 	if request.method == 'POST':
@@ -110,6 +110,26 @@ def medicalHistory():
 				showMFlag = True
 			else:
 				c.execute("INSERT INTO medHis ('name', 'description', 'type') VALUES('{}', '{}', '{}')".format(newName, newDescription, newType))
+				response = requests.get('https://api.fda.gov/drug/label.json?search=openfda.brand_name:"{}"'.format(newName))
+				print(response.status_code)
+				print(type(response.status_code))
+				if response.status_code == 200:
+					data = response.json().get("results")[0]
+					print(data)
+					if data.get('ask_a_doctor') != None:
+						showMFlag = True
+						mTitle = newName + " Warning"
+						mContent = "Ask a Doctor or Pharmacist:\n" + data.get('ask_a_doctor')[0] + "\n\n"
+					elif data.get('ask_a_doctor_or_pharmacist') != None:
+						showMFlag = True
+						mTitle = newName + " Warning"
+						mContent = "Ask a Doctor or Pharmacist:\n" + data.get('ask_a_doctor_or_pharmacist')[0] + "\n\n"
+					if data.get('do_not_use') != None:
+						showMFlag = True
+						mTitle = newName + " Warning"
+						mContent = data.get('do_not_use')[0].replace("•","\n") + "\n\n"
+						mContent.replace(".",".<br>").capitalize()
+
 		elif request.form.get('submitSymptom') != None:
 			newName = request.form.get("symptomInput").capitalize()
 			newType = "Symptom"
