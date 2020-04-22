@@ -763,20 +763,19 @@
             }
           }();
 
-          !function() {
+          function makeCalendar () {
               //var data = require('static/json/data.json');
-              let jsondata;
-              var calendar;
-
+              //calendar;
+              //setInterval(function () {
               fetch("static/json/data.json")
                   .then(function(u){ return u.json();})
                   .then(
                         function(json){
                           console.log(json);
-                          calendar = new Calendar('#calendar', json.entities);
+                          var calendar = new Calendar('#calendar', json.entities);
                         }
                       )
-
+              //}, 10000);
              //var calendar = new Calendar('#calendar', data);
             //console.log (myData.entities);
 
@@ -785,8 +784,12 @@
 
             }
 
+          };
 
-          }();
+          //setInterval(function () {
+              makeCalendar();
+          //}, 1000);
+
 
 
       </script>

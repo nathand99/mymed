@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
@@ -16,23 +16,30 @@ def homeReroute():
 def addReminder():
 	if request.method== "POST":
         #if request.form["username"]
-		print (request.form["drug"])
-		print (request.form["date1"])
-		random = request.form["date1"]
-		date_object = datetime.strptime(random, '%d/%m/%Y')
-		formatDate = date_object.strftime('%Y-%m-%d')
-		with open('static/json/data.json') as json_file:
-			data = json.load(json_file)
-			temp = data['entities']
-			y = dict()
-			y["eventName"] = request.form["drug"]
-			y["calendar"] = "Work"
-			y["color"] = "orange"
-			y["date"] = formatDate
-		    # appending data to emp_details
-			temp.append(y)
-		with open('static/json/data.json','w') as f:
-			json.dump(data, f, indent=4)
+		date1 = request.form["date1"]
+		date2 = request.form["date2"]
+
+		date1_object = datetime.strptime(date1, '%d/%m/%Y')
+		date2_object = datetime.strptime(date2, '%d/%m/%Y')
+		date2_object += timedelta(days=1)
+
+		while date1_object != date2_object:
+			formatDate = date1_object.strftime('%Y-%m-%d')
+			#while date1_object != (date2_object += datetime.timedelta(days=1)):
+
+			with open('static/json/data.json') as json_file:
+				data = json.load(json_file)
+				temp = data['entities']
+				y = dict()
+				y["eventName"] = request.form["drug"]
+				y["calendar"] = "Work"
+				y["color"] = "orange"
+				y["date"] = formatDate
+			    # appending data to emp_details
+				temp.append(y)
+			with open('static/json/data.json','w') as f:
+				json.dump(data, f, indent=4)
+			date1_object += timedelta(days=1)
 
 		return redirect(url_for('home'))
 	return render_template('addReminder.html')
