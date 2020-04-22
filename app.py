@@ -81,8 +81,8 @@ def medicalHistory():
 				newType = "Drug"
 			else:
 				newType = "Symptom"
-			newDescription = wikipedia.summary(newName, sentences=1, auto_suggest=False).replace("'","")
-			c.execute("INSERT INTO medHis ('name', 'description', 'type') VALUES('{}', '{}', '{}')".format(newName, newDescription, newType))
+			newDescription = wikipedia.summary(newName[:-1], sentences=1, auto_suggest=False).replace("'","")
+			c.execute("INSERT INTO medHis ('name', 'description', 'type') VALUES('{}', '{}', '{}')".format(newName[:-1], newDescription, newType))
 		else:
 			medHisId = request.form.get('deleteButton')
 			c.execute("DELETE FROM medHis WHERE id={}".format(medHisId))
