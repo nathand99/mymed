@@ -9,6 +9,31 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
+	conn = sqlite3.connect('reminders.db')
+	c = conn.cursor()
+	c.execute('SELECT * from rem')
+	result = c.fetchall()
+	with open('static/json/data.json') as json_file:
+		data = json.load(json_file)
+		del data['entities']
+		entities = []
+		for row in result:
+			eventName, date, time = row
+			nameAndTime = eventName + " @ " + time
+			y = dict()
+			y["eventName"] = nameAndTime
+			y["calendar"] = "Work"
+			y["color"] = "blue"
+			y["date"] = date
+		    # appending data to emp_details
+			entities.append(y)
+		data['entities'] = entities
+	with open('static/json/data.json','w') as f:
+		json.dump(data, f, indent=4)
+
+		#print ("{} {} {}".format(eventName, date, time))
+		conn.close()
+
 	return render_template('index.html')
 
 @app.route("/index.html", methods=['POST', 'GET'])
@@ -19,12 +44,7 @@ def homeReroute():
 def addReminder():
 	conn = sqlite3.connect('reminders.db')
 	c = conn.cursor()
-	c.execute('SELECT * from rem')
-	result = c.fetchall()
-	#print (result)
-	for row in result:
-		#eventName, date, time = row
-		print ("{} {} {}".format(row[0], row[1], row[2]))
+
 
 	if request.method== "POST":
         #if request.form["username"]

@@ -1,58 +1,34 @@
 {
     "entities": [
         {
-            "eventName": "Lunch Meeting w/ Mark",
+            "eventName": "Take meds @ 18:00",
             "calendar": "Work",
-            "color": "orange",
-            "date": "2020-04-19"
-        },
-        {
-            "eventName": "Interview - Jr. Web Developer",
-            "calendar": "Work",
-            "color": "orange",
-            "date": "2020-04-19"
-        },
-        {
-            "eventName": "Take Panadol",
-            "calendar": "Work",
-            "color": "orange",
+            "color": "blue",
             "date": "2020-04-23"
         },
         {
-            "eventName": "Take meds",
+            "eventName": "Last test @ 10:00",
             "calendar": "Work",
-            "color": "orange",
-            "date": "2020-04-24"
-        },
-        {
-            "eventName": "Take Panadol",
-            "calendar": "Work",
-            "color": "orange",
-            "date": "2020-04-08"
-        },
-        {
-            "eventName": "Take Panadol",
-            "calendar": "Work",
-            "color": "orange",
-            "date": "2020-04-09"
-        },
-        {
-            "eventName": "Take Panadol",
-            "calendar": "Work",
-            "color": "orange",
-            "date": "2020-04-10"
-        },
-        {
-            "eventName": "Take Panadol",
-            "calendar": "Work",
-            "color": "orange",
+            "color": "blue",
             "date": "2020-04-11"
         },
         {
-            "eventName": "Something",
+            "eventName": "another @ 10:00",
             "calendar": "Work",
             "color": "blue",
-            "date": "2020-04-24"
+            "date": "2020-04-18"
+        },
+        {
+            "eventName": "another @ 10:00",
+            "calendar": "Work",
+            "color": "blue",
+            "date": "2020-04-19"
+        },
+        {
+            "eventName": "Something @ 09:00",
+            "calendar": "Work",
+            "color": "blue",
+            "date": "2020-04-17"
         }
     ]
 }
