@@ -82,7 +82,7 @@
     const result = document.getElementById("results")
     result.innerHTML = "Showing results for: " + queryTerm[1];
     var url = 'http://newsapi.org/v2/everything?' +
-          'q=' + queryTerm[1] + '&' +
+          'q=' + queryTerm[1] + '&' + 'language=en&' +
           'from=2020-04-01&' +
           'sortBy=' + sortby + '&' +
           'apiKey=a3dd638d91ef45719645d93de7a53f59';
