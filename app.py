@@ -22,8 +22,8 @@ def home():
 			nameAndTime = eventName + " @ " + time
 			y = dict()
 			y["eventName"] = nameAndTime
-			y["calendar"] = "Work"
-			y["color"] = "blue"
+			y["calendar"] = "Medicine"
+			y["color"] = "green"
 			y["date"] = date
 		    # appending data to emp_details
 			entities.append(y)
@@ -58,18 +58,6 @@ def addReminder():
 
 		while date1_object != date2_object:
 			formatDate = date1_object.strftime('%Y-%m-%d')
-			# with open('static/json/data.json') as json_file:
-			# 	data = json.load(json_file)
-			# 	temp = data['entities']
-			# 	y = dict()
-			# 	y["eventName"] = request.form["drug"]
-			# 	y["calendar"] = "Work"
-			# 	y["color"] = "orange"
-			# 	y["date"] = formatDate
-			#     # appending data to emp_details
-			# 	temp.append(y)
-			# with open('static/json/data.json','w') as f:
-			# 	json.dump(data, f, indent=4)
 			c.execute("INSERT INTO rem ('eventName', 'date', 'time') VALUES('{}', '{}', '{}')".format(request.form["drug"], formatDate, request.form["appt"]))
 			date1_object += timedelta(days=1)
 			conn.commit()

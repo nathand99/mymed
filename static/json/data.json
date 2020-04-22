@@ -1,34 +1,22 @@
 {
     "entities": [
         {
-            "eventName": "Take meds @ 18:00",
+            "eventName": "Take Panadol @ 18:00",
             "calendar": "Work",
             "color": "blue",
             "date": "2020-04-23"
         },
         {
-            "eventName": "Last test @ 10:00",
+            "eventName": "Take Panadol @ 18:00",
             "calendar": "Work",
             "color": "blue",
-            "date": "2020-04-11"
+            "date": "2020-04-24"
         },
         {
-            "eventName": "another @ 10:00",
+            "eventName": "Take Panadol @ 18:00",
             "calendar": "Work",
             "color": "blue",
-            "date": "2020-04-18"
-        },
-        {
-            "eventName": "another @ 10:00",
-            "calendar": "Work",
-            "color": "blue",
-            "date": "2020-04-19"
-        },
-        {
-            "eventName": "Something @ 09:00",
-            "calendar": "Work",
-            "color": "blue",
-            "date": "2020-04-17"
+            "date": "2020-04-25"
         }
     ]
 }
