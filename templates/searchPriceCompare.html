@@ -54,34 +54,45 @@
     </div>
   </nav>
 
-
-  <section id="localPharms">
-
+  
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mx-auto">
+        <!-- Load icon library -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- The form -->
+      <br><br><br><br><br><br>
+      <h1>Price Comparison Search Engine</h1><br>
+      <p id = "paragraph">
+        <br>
+        Here at MyMed, we want to make sure you're well informed of your options. That's why you can use our search engine
+        to compare prices of all your regular medications across many pharmacies, and find your closest one.
+        <br><br>
+        Type in your medication using either the everyday name you know it as, or its active ingredient.
+      </p>
+    </div>
+  </div>
 
     <div class="searchBar">
     <!-- Load icon library -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
       <!-- The form -->
-      <h1>Search by Common Name</h1>
-      <form class="example" action="searchName.html">
-        <input type="text" placeholder="Search.." name="search"></input>
+      <h3>Search by Common Name or Active Ingredient</h3>
+      <form class="example" action="searchName.html" onsubmit="return empty()">
+        <input type="text" placeholder="Search.." name="search" id="query"></input>
         <button type="submit"><i class="fa fa-search"></i></button>
       </form>
     </div>
 
-    <div class="searchBar">
-      <!-- Load icon library -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-        <!-- The form -->
-        <h1>Search by Active Ingredient</h1>
-        <form class="example" action="searchName.html">
-          <input type="text" placeholder="Search.." name="search"></input>
-          <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-      </div>
-  </section>
-
-
+    <script>
+      function empty() {
+        var x;
+        x = document.getElementById("query").value;
+        if (x == "") {
+            alert("You haven't entered anything into the search bar.");
+            return false;
+        };
+      }
+    </script>
 </html>
