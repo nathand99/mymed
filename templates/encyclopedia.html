@@ -11,6 +11,7 @@
   #dis1 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
   #dis2 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
   #dis3 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
+  #diseaseHeading { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
   #link1 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
   #link2 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
   #link3 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
@@ -33,20 +34,16 @@
 <script src = "static/js/p5.sound.js"></script>
 <script>
   let queryTerm = document.location.search.replace(/^.*?\=/,'');  //getting query term from url
-  console.log(queryTerm);
+  //console.log(queryTerm);
   queryTerm = queryTerm.replace(/%20/g,' ');  //getting query term from url
-  console.log(queryTerm);
   let searchUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=';
   let contentUrl = 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=';
-
-  setup();  //calling function to do search
+  setup();
 
   function setup() {
-    //console.log("In setup()");
     labelChange();
     let url =  searchUrl + queryTerm;
     loadJSON(url, gotSearch, 'jsonp');
-    //console.log(url);
   }
 
   function gotSearch(data){
@@ -55,21 +52,30 @@
     pages = new Array(data[1][0], data[1][1], data[1][2]);
     urls = new Array(data[3][0], data[3][1], data[3][2]);
     pageData = new Array(pages, urls);
-    document.getElementById("dis1").innerHTML = "1. " + pageData[0][0];
-    document.getElementById("dis2").innerHTML = "2. " + pageData[0][1];
-    document.getElementById("dis3").innerHTML = "3. " + pageData[0][2];
-    document.getElementById("dis1").href = pageData[1][0];
-    document.getElementById("dis2").href = pageData[1][1];
-    document.getElementById("dis3").href = pageData[1][2];
-    document.getElementById("link1").innerHTML = "Diseases related to: '" + queryTerm + "'";
-    document.getElementById("link2").innerHTML = "Diseases related to: '" + queryTerm + "'";
-    document.getElementById("link3").innerHTML = "Diseases related to: '" + queryTerm + "'";
-    //console.log(pageData);
+    if ((typeof pageData[0][0] == 'undefined') && (typeof pageData[0][1] == 'undefined') && (typeof pageData[0][2] == 'undefined')){
+      document.getElementById("dis1").innerHTML = "No results for the search term '" + queryTerm + "'.";
+    }
+    if (typeof pageData[0][0] != 'undefined'){
+      document.getElementById("dis1").innerHTML = "1. " + pageData[0][0];
+      document.getElementById("dis1").href = pageData[1][0];
+    }
+    if (typeof pageData[0][1] != 'undefined'){
+      document.getElementById("dis2").innerHTML = "2. " + pageData[0][1];
+      document.getElementById("dis2").href = pageData[1][1];
+    }
+    if (typeof pageData[0][2] != 'undefined'){
+      document.getElementById("dis3").innerHTML = "3. " + pageData[0][2];
+      document.getElementById("dis3").href = pageData[1][2];
+    }
   }
 
   function labelChange(){
-    document.getElementById("diseaseHeading").innerHTML = "Diseases related to: '" + queryTerm + "'";
-    document.getElementById("medicalHeading").innerHTML = "Medications related to: '" + queryTerm + "'";
+    let volume = localStorage.getItem('volume');
+    if (volume == 'False'){
+      document.getElementById("diseaseHeading").innerHTML = "Diseases related to: '" + queryTerm + "'";
+    } else {
+      document.getElementById("diseaseHeading").innerHTML = "Medications related to: '" + queryTerm + "'";
+    }
   }
 
 </script>
@@ -113,52 +119,18 @@
 
   <div>
     <br>
-    <h1 id = "diseaseHeading" ></h1>
+    <h1 id = "diseaseHeading" >Disesase related to ...</h1>
   </div>
   <div>
-    <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank" id = "dis1">1. COVID-19 (Novel Coronavirus)</a>
-        <p id = "link1">filler</p>
-    <a href="https://www.who.int/csr/sars/en/" target="_blank" id = "dis2">2. SARS (Severe Acute Respiratory Syndrome) Coronavirus</a>
-        <p id = "link2">filler</p>
-    <a id = "dis3" href="https://www.who.int/news-room/fact-sheets/detail/middle-east-respiratory-syndrome-coronavirus-(mers-cov)" target="_blank">3. MERS (Middle East Respiratory Syndrome) Coronavirus</a>
-        <p id = "link3">filler</p>
+    <a target="_blank" id = "dis1"></a>
+        <p id = "link1"></p>
+    <a target="_blank" id = "dis2"></a>
+        <p id = "link2"></p>
+    <a id = "dis3" target="_blank"></a>
+        <p id = "link3"></p>
   </div>
   <div>
-    <h1 id = "medicalHeading"></h1>
   </div>
-  <div class="col-lg-4 col-md-6 mb-4" id = "text1">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="../static/images/telfast.jpg" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="medicine.html">1. TELFAST 180mg Hayfever Allergy Reliefs</a>
-            </h4>
-          </div>
-        </div>
-  </div>
-
-    <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card h-100">
-            <a href="#"><img class="card-img-top" src="../static/images/quilton.jpg" alt=""></a>
-            <div class="card-body">
-              <h4 class="card-title">
-                <a href="medicine.html">2. Quilton Toilet Tissue 3 Ply White 180 Sheets 24 pack</a>
-              </h4>
-            </div>
-          </div>
-    </div>
-
-
-
-
-
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
 
   <!-- Bootstrap core JavaScript -->
   <script src="static/vendor/jquery/jquery.min.js"></script>
