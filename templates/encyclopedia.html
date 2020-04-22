@@ -8,21 +8,9 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <style>
-  #dis1 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #dis2 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #dis3 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #dis4 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #dis5 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #dis6 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #dis7 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #dis8 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #dis9 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #dis10 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-
+  #infotext { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
+  #dis1, #dis2, #dis3, #dis4, #dis5, #dis6, #dis7, #dis8, #dis9, #dis10 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
   #diseaseHeading { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #link1 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #link2 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
-  #link3 { padding-left: 30px;font-family: "Trebuchet MS", Helvetica, sans-serif; }
 
   </style>
 
@@ -54,55 +42,39 @@
     loadJSON(url, gotSearch, 'jsonp');
   }
 
+  function gotContent(data){
+    console.log(Object.keys(data.query.pages));
+  }
+
+  function checkPageData(title, pageUrl){
+    let fixedTitle = title.replace(/\s+/g, '_');
+    console.log(fixedTitle);
+    let contentSearch = "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=" + fixedTitle;
+    console.log(contentSearch);
+    loadJSON(contentUrl, gotContent, 'jsonp');
+  }
+
+  function checkUndefined(totalPages, pages){
+    for (let currPage = 0; currPage < totalPages; currPage++){
+      if (typeof pages[0][currPage] != 'undefined'){  //checking if search entries exist
+        let pageString = currPage + 1;
+        document.getElementById("dis" + pageString).innerHTML = pageString + ". " + pages[0][currPage];
+        document.getElementById("dis" + pageString).href = pages[1][currPage];
+        checkPageData(pages[0][currPage], pages[1][currPage]);
+      }
+    }
+  }
+
   function gotSearch(data){
-    //console.log("In gotSearch()");
     console.log(data);
     pages = new Array(data[1][0], data[1][1], data[1][2], data[1][3], data[1][4], data[1][5], data[1][6], data[1][7], data[1][8], data[1][9]);
     urls = new Array(data[3][0], data[3][1], data[3][2], data[3][3], data[3][4], data[3][5], data[3][6], data[3][7], data[3][8], data[3][9]);
     pageData = new Array(pages, urls);
-    if ((typeof pageData[0][0] == 'undefined') && (typeof pageData[0][1] == 'undefined') && (typeof pageData[0][2] == 'undefined')){
+    if (typeof pageData[0][0] == 'undefined'){
       document.getElementById("dis1").innerHTML = "No results for the search term '" + queryTerm + "'.";
     }
-    if (typeof pageData[0][0] != 'undefined'){  //checking if search entries exist
-      document.getElementById("dis1").innerHTML = "1. " + pageData[0][0];
-      document.getElementById("dis1").href = pageData[1][0];
-    }
-    if (typeof pageData[0][1] != 'undefined'){
-      document.getElementById("dis2").innerHTML = "2. " + pageData[0][1];
-      document.getElementById("dis2").href = pageData[1][1];
-    }
-    if (typeof pageData[0][2] != 'undefined'){
-      document.getElementById("dis3").innerHTML = "3. " + pageData[0][2];
-      document.getElementById("dis3").href = pageData[1][2];
-    }
-    if (typeof pageData[0][3] != 'undefined'){
-      document.getElementById("dis4").innerHTML = "4. " + pageData[0][3];
-      document.getElementById("dis4").href = pageData[1][3];
-    }
-    if (typeof pageData[0][4] != 'undefined'){
-      document.getElementById("dis5").innerHTML = "5. " + pageData[0][4];
-      document.getElementById("dis5").href = pageData[1][4];
-    }
-    if (typeof pageData[0][5] != 'undefined'){
-      document.getElementById("dis6").innerHTML = "6. " + pageData[0][5];
-      document.getElementById("dis6").href = pageData[1][5];
-    }
-    if (typeof pageData[0][6] != 'undefined'){
-      document.getElementById("dis7").innerHTML = "7. " + pageData[0][6];
-      document.getElementById("dis7").href = pageData[1][6];
-    }
-    if (typeof pageData[0][7] != 'undefined'){
-      document.getElementById("dis8").innerHTML = "8. " + pageData[0][7];
-      document.getElementById("dis8").href = pageData[1][7];
-    }
-    if (typeof pageData[0][8] != 'undefined'){
-      document.getElementById("dis9").innerHTML = "9. " + pageData[0][8];
-      document.getElementById("dis9").href = pageData[1][8];
-    }
-    if (typeof pageData[0][9] != 'undefined'){
-      document.getElementById("dis10").innerHTML = "10. " + pageData[0][9];
-      document.getElementById("dis10").href = pageData[1][9];
-    }
+    let numResults = localStorage.getItem('numResults');
+    checkUndefined(numResults, pageData);
   }
 
   function labelChange(){
@@ -149,7 +121,7 @@
 
   <header class="bg-primary text-white">
     <div class="container text-center">
-      <h1>Encyclopedia</h1>
+      <h1>Encyclopedia Search Results</h1>
     </div>
   </header>
 
@@ -158,26 +130,17 @@
     <h1 id = "diseaseHeading" >Information on ... related to ...</h1>
   </div>
   <div>
-    <a target="_blank" id = "dis1"></a>
-        <p id = "link1"></p>
-    <a target="_blank" id = "dis2"></a>
-        <p id = "link2"></p>
-    <a id = "dis3" target="_blank"></a>
-        <p id = "link3"></p>
-    <a target="_blank" id = "dis4"></a>
-        <p id = "link4"></p>
-    <a target="_blank" id = "dis5"></a>
-        <p id = "link5"></p>
-    <a id = "dis6" target="_blank"></a>
-        <p id = "link6"></p>
-    <a target="_blank" id = "dis7"></a>
-        <p id = "link7"></p>
-    <a target="_blank" id = "dis8"></a>
-        <p id = "link8"></p>
-    <a id = "dis9" target="_blank"></a>
-        <p id = "link9"></p>
-    <a id = "dis10" target="_blank"></a>
-        <p id = "link10"></p>
+    <p id = "infotext">Click on a result to view more information from our trusted database.<br> Encylopedia results are sorted by the amount of other users visiting these pages.</p>
+    <a target="_blank" id = "dis1"></a><br>
+    <a target="_blank" id = "dis2"></a><br>
+    <a target="_blank" id = "dis3"></a><br>
+    <a target="_blank" id = "dis4"></a><br>
+    <a target="_blank" id = "dis5"></a><br>
+    <a target="_blank" id = "dis6"></a><br>
+    <a target="_blank" id = "dis7"></a><br>
+    <a target="_blank" id = "dis8"></a><br>
+    <a target="_blank" id = "dis9"></a><br>
+    <a target="_blank" id = "dis10"></a><br>
   </div>
   <div>
   </div>
