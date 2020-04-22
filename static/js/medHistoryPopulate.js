@@ -43,7 +43,7 @@ function modalPopulate(name) {
        a.append(d);
        h = document.createElement('h5');
        h.setAttribute('class', 'mb-1');
-       h.innerText = name;
+       h.innerText = name.slice(0,-1);
        d.append(h)
 
        a.onclick()

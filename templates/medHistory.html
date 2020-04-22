@@ -108,9 +108,15 @@
                 <form id="modalListing" action="{{ url_for('medicalHistory') }}" method="post">         
                   <div class="list-group" id="modalOptions" style="max-width: 90%; margin: 0 auto;">
                     {% for option in modalToPopulate %}
-                      <script type="text/javascript">
-                        modalPopulate("{{ option }}")
-                      </script>
+                      {% if drugFlag == True %}
+                        <script type="text/javascript">
+                          modalPopulate("{{ option }}d")
+                        </script>
+                      {% else %}
+                        <script type="text/javascript">
+                          modalPopulate("{{ option }}s")
+                        </script>
+                      {% endif %}
                     {% endfor %}
                   </div>
                 </form>
