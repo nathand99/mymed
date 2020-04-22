@@ -2,6 +2,10 @@
 <html lang="en">
 
 <head>
+  <style>
+    #helpertext {padding-left: 20%; padding-right: 20%; font-family: "Trebuchet MS", Helvetica, sans-serif; text-align: justify;}
+    #backButton {font-family: "Trebuchet MS", Helvetica, sans-serif; right: 20%; position: absolute;}
+  </style>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -68,6 +72,7 @@
   <br>
   <br>
   <h1 id = "results">      Showing results for: {queryTerm} </h1><br>
+  <a id = "backButton" href = "searchPriceCompare.html">Back to Search</a><br><br>
   <div id="container"></div>
       <script type="text/javascript">
       let queryTerm = document.location.search;  //getting query term from url
@@ -221,6 +226,26 @@
 
   <br>
   <br>
+  <div>
+    <br><br><br>
+    <p id = "helpertext"><u>Need Help?</u><br>
+    <b>1. Using 'search by common name'.</b><br>
+    Enter a drug/medicine that you are looking to buy into the search bar underneath the text "Search by common name".
+    Press the 'magnifying glass icon' and the top results, prices and stores will be shown for the specified name.<br><br>
+    <b>2. Using 'search by active ingredient'</b><br>
+    An active ingredient is the part of the drug that affects the body.
+    Drugs containing the same active ingredient will have very similar effects.
+    Please check with your doctor that the drugs with the same active ingredient are interchangeable.
+    Enter a drug/medicine that you are looking to buy into the search bar underneath the text "Search by common name".
+    Press 'magnifying glass icon' and the top drug results, prices and stores will be shown for the specified active ingredient.<br><br>
+    <b>3. Using 'Pharmacies near me'</b><br>
+    'Pharmacies near me' shows you the closest pharmacies near your area!
+    To use it, click and hold on the map then drag your mouse to move around the map.
+    Scroll in/out using the mouse to zoom in/out. Any red markers on the map represent pharmacies.
+    To get more information, click on the red marker.
+  </p>
+  </div>
+  <br><br><br>
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">
