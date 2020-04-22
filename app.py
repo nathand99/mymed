@@ -69,6 +69,11 @@ def addReminder():
 		conn.close()
 	return render_template('addReminder.html')
 
+@app.route("/delReminder.html", methods=['POST', 'GET'])
+def delReminder():
+	return render_template('delReminder.html')
+
+
 @app.route("/alert.html", methods=['POST', 'GET'])
 def alert():
 	return render_template('alert.html')

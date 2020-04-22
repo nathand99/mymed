@@ -2,21 +2,33 @@
     "entities": [
         {
             "eventName": "Take Panadol @ 18:00",
-            "calendar": "Work",
-            "color": "blue",
+            "calendar": "Medicine",
+            "color": "green",
             "date": "2020-04-23"
         },
         {
             "eventName": "Take Panadol @ 18:00",
-            "calendar": "Work",
-            "color": "blue",
+            "calendar": "Medicine",
+            "color": "green",
             "date": "2020-04-24"
         },
         {
             "eventName": "Take Panadol @ 18:00",
-            "calendar": "Work",
-            "color": "blue",
+            "calendar": "Medicine",
+            "color": "green",
             "date": "2020-04-25"
+        },
+        {
+            "eventName": "Take Panadol @ 18:00",
+            "calendar": "Medicine",
+            "color": "green",
+            "date": "2020-04-10"
+        },
+        {
+            "eventName": "Take Panadol @ 18:00",
+            "calendar": "Medicine",
+            "color": "green",
+            "date": "2020-04-11"
         }
     ]
 }
