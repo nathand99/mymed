@@ -2,8 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for
 import json
 from datetime import datetime, timedelta
 import sqlite3
-#import wikipedia
-#import requests
+import wikipedia
+import requests
 
 app = Flask(__name__)
 
