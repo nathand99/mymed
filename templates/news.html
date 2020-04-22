@@ -64,6 +64,20 @@
     </div>
   </header>
   <br>
+  <div class="searchBar container col-lg-8 mx-auto">
+    <form class="example" action="news.html">
+      <input type="text" placeholder="Search.." name="search">
+      <button type="submit"><i class="fa fa-search">Submit</i></button>
+      <!-- sort by button-->
+      <label for="sortby">Sort by:</label>
+      <select id="sortby" name="sort by">
+        <option value="publishedAt">Newest First</option>
+        <option value="relevancy">Relevance</option>
+        <option value="popularity">Popularity</option>
+      </select>
+      
+    </form>
+  </div>
   <div>
       <h1 id = "results">Showing results for: "coronavirus"</h1>
     </div>
