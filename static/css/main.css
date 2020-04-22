@@ -231,6 +231,10 @@ h6 {
   background: #57b846;
 }
 
+.btn--blue {
+  background: #ffc4d2;
+}
+
 .btn--green:hover {
   background: #4dae3c;
 }

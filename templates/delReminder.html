@@ -1,81 +1,98 @@
 <!DOCTYPE html>
-<!-- saved from url=(0052)https://colorlib.com/etc/regform/colorlib-regform-2/ -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel = "shortcut icon" type = "image/png" href = "../static/images/logo.png">
+<html lang="en">
 
+<head>
 
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Colorlib Templates">
-<meta name="author" content="Colorlib">
-<meta name="keywords" content="Colorlib Templates">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-<title>MyMed - Add Reminder</title>
+  <title>MyMed - Medical History</title>
 
-<link href="static/Au Register Forms by Colorlib_files/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-<link href="static/Au Register Forms by Colorlib_files/font-awesome.min.css" rel="stylesheet" media="all">
-
-<link href="static/Au Register Forms by Colorlib_files/css" rel="stylesheet">
-
-<link href="static/Au Register Forms by Colorlib_files/select2.min.css" rel="stylesheet" media="all">
-<link href="static/Au Register Forms by Colorlib_files/daterangepicker.css" rel="stylesheet" media="all">
-
-<link href="static/Au Register Forms by Colorlib_files/main.css" rel="stylesheet" media="all">
-<link rel="icon" href="../static/images/logo.png">
+  <!-- Bootstrap core CSS -->
+  <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel = "shortcut icon" type = "image/png" href = "../static/images/logo.png">
+  <!-- Custom styles for this template -->
+  <link href="static/css/scrolling-nav.css" rel="stylesheet">
 
 </head>
-<body>
-<div class="page-wrapper bg-blue p-t-180 p-b-100 font-robo">
-<div class="wrapper wrapper--w960">
-<div class="card card-2">
-<div class="card-heading"></div>
-<div class="card-body">
-    <h2 class="title">Delete Reminder</h2>
-    <form method="POST">
-        <div class="input-group">
-            <input class="input--style-2" type="text" placeholder="Event Name" name="drug" required>
+
+<body id="page-top">
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+    <div class="container">
+      <img src="static/images/logo.png" alt="logo" width="80" height="80">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top"> </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="medHistory.html">My Medical History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="searchNews.html">News</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="searchEncyclopaedia.html">Encyclopaedia</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="searchPriceCompare.html">Price Compare</a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-primary text-white">
+    <div class="container text-center">
+      <h1>Delete Reminder from Calendar</h1>
+    </div>
+  </header>
+
+  <div>
+  <form action="/" style="text-align: left; padding: 10px 65px; max-height: 90%;">
+      <button type="submit" class="btn btn-outline-danger reminder">Go Back</button>
+  </form>
+    <div class="container" style="display: inline;">
+      <form id="medHListing" method="post">
+        <div class="list-group" id="medHistoryListing" style="max-width: 90%; margin: 0 auto;">
+          <script src="static/js/medHistoryPopulate.js"></script>
+          {% for listing in events %}
+            <script type="text/javascript">
+              medHPop("{{ listing[0] }}", "{{ listing[1] }}", "{{ listing[3] }}", "{{ listing[2] }}")
+            </script>
+          {% endfor %}
         </div>
-        <div class="row row-space">
-        <div class="col-2">
-        <div class="input-group">
-            <p class="heading">From: </p>
-            <input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date1" required>
-        </div>
-        <div class="input-group">
-            <p class="heading">To: </p>
-            <input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date2" required>
-        </div>
-        <div class="input-group">
-            <p class="heading">Times: </p>
-            <input class="input--style-2" type="time" id="appt" name="appt" required>
-        </div>
-        </div>
-        </div>
+      </form>
+    </div>
 
-        <div class="p-t-30">
-            <button class="btn btn--radius btn--green" type="submit">Add</button>
-        </div>
-    </form>
-</div>
-</div>
-</div>
-</div>
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
 
-<script type="text/javascript" async="" src="static/Au Register Forms by Colorlib_files/analytics.js.download"></script><script src="static/Au Register Forms by Colorlib_files/jquery.min.js.download" type="text/javascript"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="static/vendor/jquery/jquery.min.js"></script>
+  <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-<script src="static/Au Register Forms by Colorlib_files/select2.min.js.download" type="text/javascript"></script>
-<script src="static/Au Register Forms by Colorlib_files/moment.min.js.download" type="text/javascript"></script>
-<script src="static/Au Register Forms by Colorlib_files/daterangepicker.js.download" type="text/javascript"></script>
+  <!-- Plugin JavaScript -->
+  <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-<script src="static/Au Register Forms by Colorlib_files/global.js.download" type="text/javascript"></script>
-
-<script async="" src="static/Au Register Forms by Colorlib_files/js" type="text/javascript"></script>
-<script type="text/javascript">
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-23581568-13');
-</script>
+  <!-- Custom JavaScript for this theme -->
+  <script src="static/js/scrolling-nav.js"></script>
 
 
-<div class="daterangepicker dropdown-menu ltr single opensright"><div class="calendar left single" style="display: block;"><div class="daterangepicker_input"><input class="input-mini form-control" type="text" name="daterangepicker_start" value="" style="display: none;"><i class="fa fa-calendar glyphicon glyphicon-calendar" style="display: none;"></i><div class="calendar-time" style="display: none;"><div></div><i class="fa fa-clock-o glyphicon glyphicon-time"></i></div></div><div class="calendar-table"></div></div><div class="calendar right" style="display: none;"><div class="daterangepicker_input"><input class="input-mini form-control" type="text" name="daterangepicker_end" value="" style="display: none;"><i class="fa fa-calendar glyphicon glyphicon-calendar" style="display: none;"></i><div class="calendar-time" style="display: none;"><div></div><i class="fa fa-clock-o glyphicon glyphicon-time"></i></div></div><div class="calendar-table"></div></div><div class="ranges" style="display: none;"><div class="range_inputs"><button class="applyBtn btn btn-sm btn-success" disabled="disabled" type="button">Apply</button> <button class="cancelBtn btn btn-sm btn-default" type="button">Cancel</button></div></div></div></body></html>
+</body>
+
+</html>

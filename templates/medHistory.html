@@ -31,7 +31,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.html">Home</a>
+            <a class="nav-link js-scroll-trigger" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="medHistory.html">My Medical History</a>
@@ -102,10 +102,10 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">     
+            <div class="modal-body">
               <p>{{ modalContent }}</p>
               {% if disambiguationFlag == True %}
-                <form id="modalListing" action="{{ url_for('medicalHistory') }}" method="post">         
+                <form id="modalListing" action="{{ url_for('medicalHistory') }}" method="post">
                   <div class="list-group" id="modalOptions" style="max-width: 90%; margin: 0 auto;">
                     {% for option in modalToPopulate %}
                       {% if drugFlag == True %}
