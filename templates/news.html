@@ -80,13 +80,14 @@
     let sortby = document.location.search.split("=")
     console.log(sortby[2])
     const result = document.getElementById("results")
-    result.innerHTML = "Showing results for: " + queryTerm[1];
+    const displayt = queryTerm[1].replace(/\+/g,' ');
+    result.innerHTML = "Showing results for: " + displayt;
     var url = 'http://newsapi.org/v2/everything?' +
           'q=' + queryTerm[1] + '&' + 'language=en&' +
           'from=2020-04-01&' +
-          'sortBy=' + sortby + '&' +
+          'sortBy=' + sortby[2] + '&' +
           'apiKey=a3dd638d91ef45719645d93de7a53f59';
-
+    console.log(url)
     var req = new Request(url);
 
     fetch(req)
