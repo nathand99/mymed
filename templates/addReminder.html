@@ -30,23 +30,23 @@
 <div class="card-heading"></div>
 <div class="card-body">
     <h2 class="title">Add Reminder</h2>
-    <form method="POST" action="index.html">
+    <form method="POST">
         <div class="input-group">
-            <input class="input--style-2" type="text" placeholder="Drug Name" name="drug" >
+            <input class="input--style-2" type="text" placeholder="Event Name" name="drug" required>
         </div>
         <div class="row row-space">
         <div class="col-2">
         <div class="input-group">
             <p class="heading">From: </p>
-            <input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date1" >
+            <input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date1" required>
         </div>
         <div class="input-group">
             <p class="heading">To: </p>
-            <input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date2" >
+            <input class="input--style-2 js-datepicker" type="text" placeholder="Insert Date Here" name="date2" required>
         </div>
         <div class="input-group">
             <p class="heading">Times: </p>
-            <input class="input--style-2" type="time" id="appt" name="appt" >
+            <input class="input--style-2" type="time" id="appt" name="appt" required>
         </div>
         </div>
         </div>

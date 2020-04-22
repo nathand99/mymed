@@ -9,7 +9,9 @@
   <meta name="author" content="">
 
   <title>MyMed - Encyclopaedia</title>
-
+  <style>
+    #helperText {color: black;}
+  </style>
   <!-- Bootstrap core CSS -->
   <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link rel = "shortcut icon" type = "image/png" href = "../static/images/logo.png">
@@ -27,37 +29,33 @@
   <script>
     let searchUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&format=json&search=';
     let contentUrl = 'https://en.wikipedia.org/w/api.php?action=query&prop=revisions&rvprop=content&format=json&titles=';
-
     let userInput;
 
     function setup() {
       //console.log("In setup()");
+      console.log(document.getElementById('numResults').value);
       userInput = select('#userinput');
+      if (userInput.length < 2){
+        document.getElementById('helperText').style.color = "red";
+        document.getElementById('userinput').value = '';
+      }
       userInput.changed(goWiki);
 
       function goWiki(){
+        localStorage.setItem('numResults', document.getElementById('numResults').value);
         console.log("In goWiki()");
         let term = userInput.value();
-        let url =  searchUrl + term;
-        window.document.location = './encyclopedia.html' + '?query=' + term;
-        loadJSON(url, gotSearch, 'jsonp');
-        //console.log(url);
-      }
-
-      function gotSearch(data){
-        //console.log("In gotSearch()");
-        //console.log(data);
-        pages = new Array(data[1][0], data[1][1], data[1][2]);
-        urls = new Array(data[3][0], data[3][1], data[3][2]);
-        pageData = new Array(pages, urls);
-        //console.log(pageData);
-        //let page1 = curPage.replace(/\s+/g, '_');
-        //loadJSON(url, gotContent, 'jsonp');
-        //console.log(page1);
-      }
-
-      function gotContent(data){
-        //console.log(data);
+        let termLength = term.length;
+        if(document.getElementById('medRadio').checked && termLength > 2) {
+          localStorage.setItem('volume', 'True');
+          window.document.location = './encyclopedia.html' + '?query=' + term;
+        } else if(document.getElementById('disRadio').checked && termLength > 2) {
+          localStorage.setItem('volume', 'False');
+          window.document.location = './encyclopedia.html' + '?query=' + term;
+        } else {
+          document.getElementById('helperText').style.color = "red";
+          document.getElementById('userinput').value = '';
+        }
       }
     }
   </script>
@@ -98,14 +96,29 @@
             <!-- Load icon library -->
           <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
           <!-- The form -->
-          <h2>Encyclopedia</h2>
-          <p>Search our encyclopedia for information on drugs and diseases</p>
-          <h1>Search encyclopedia</h1>
-
-
-          <form class="example" method = "get" onsubmit="setup(); return false;"> <!--action="encyclopedia.html"-->
+          <h1>Encyclopedia Search: </h1><br>
+          <p id = "helperText">Search our encyclopedia for information on drugs and diseases. <br><br><u>Need Help?</u> <br> Please press one of the buttons to search by medication or diseases. Also make sure you are typing 3 or more letters in the text box labelled 'Search..'. Then press the search button.</p>
+          <form class="example" onsubmit="setup();"> <!--action="encyclopedia.html"-->
+            <p><b>Filter searches by:</b></p>
+            <input type="radio" id="medRadio" name="option" value="male">
+            <label for="meds">Medication &emsp;</label>
+            <input type="radio" id="disRadio" name="option" value="female">
+            <label for="diseases">Diseases</label><br><br>
+            <label for="cars">Choose number of results:</label>
+            <select id="numResults">
+              <option value="10">10</option>
+              <option value="9">9</option>
+              <option value="8">8</option>
+              <option value="7">7</option>
+              <option value="6">6</option>
+              <option value="5">5</option>
+              <option value="4">4</option>
+              <option value="3">3</option>
+            </select><br><br>
+            <p><b>Enter a term to search for:</b></p>
             <input type="text" placeholder="Search.." name="search" id="userinput"></input>
             <button type="submit"><i class="fa fa-search"></i></button>
+            <br><br><br>
           </form>
         </div>
 
