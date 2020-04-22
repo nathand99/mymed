@@ -408,7 +408,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.html">Home</a>
+            <a class="nav-link js-scroll-trigger" href="/">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="medHistory.html">My Medical History</a>
@@ -434,7 +434,8 @@
       <p class="lead">Designed to keep you on track</p>
     </div>
   </header>
-
+        <br>
+        <br>
         <div>
       <div id="calendar"></div>
       <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
@@ -793,8 +794,9 @@
 
       </script>
 
-    <form class="wrapper" action="addReminder.html">
-        <button type="submit" class="btn btn-outline-success reminder">Add Reminder</button>
+    <form method="POST" style="text-align: center; padding: 20px 10px;">
+        <button type="submit" name="add" class="btn btn-outline-success reminder">Add Reminder</button>
+        <button type="submit" name="delete" class="btn btn-outline-danger reminder">Delete Reminder</button>
     </form>
     </div>
 

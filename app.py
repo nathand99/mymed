@@ -7,7 +7,19 @@ import sqlite3
 
 app = Flask(__name__)
 
-@app.route("/")
+'''
+Dedicated page for "page not found"
+'''
+@app.route('/404')
+@app.errorhandler(404)
+def page_not_found(e=None):
+    return render_template('404.html'), 404
+
+
+'''
+ Home Start Page
+'''
+@app.route("/", methods=['POST', 'GET'])
 def home():
 	conn = sqlite3.connect('reminders.db')
 	c = conn.cursor()
@@ -32,8 +44,12 @@ def home():
 		json.dump(data, f, indent=4)
 
 		#print ("{} {} {}".format(eventName, date, time))
-		conn.close()
-
+	conn.close()
+	if request.method == 'POST':
+		if 'add' in request.form:
+			return redirect(url_for('addReminder'))
+		if 'delete' in request.form:
+			return redirect(url_for('delReminder'))
 	return render_template('index.html')
 
 @app.route("/index.html", methods=['POST', 'GET'])
@@ -71,7 +87,21 @@ def addReminder():
 
 @app.route("/delReminder.html", methods=['POST', 'GET'])
 def delReminder():
-	return render_template('delReminder.html')
+	conn = sqlite3.connect('reminders.db')
+	c = conn.cursor()
+	c.execute('select rowid, * from rem order by rowid asc')
+	result = c.fetchall()
+
+	if request.form.get('deleteButton') != None:
+		eventId = request.form.get('deleteButton')
+		c.execute("DELETE FROM rem WHERE rowid={}".format(eventId))
+		conn.commit()
+
+		return redirect(url_for('home'))
+
+
+	conn.close()
+	return render_template('delReminder.html', events=result)
 
 
 @app.route("/alert.html", methods=['POST', 'GET'])

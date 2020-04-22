@@ -4,31 +4,31 @@
             "eventName": "Take Panadol @ 18:00",
             "calendar": "Medicine",
             "color": "green",
-            "date": "2020-04-23"
-        },
-        {
-            "eventName": "Take Panadol @ 18:00",
-            "calendar": "Medicine",
-            "color": "green",
-            "date": "2020-04-24"
-        },
-        {
-            "eventName": "Take Panadol @ 18:00",
-            "calendar": "Medicine",
-            "color": "green",
             "date": "2020-04-25"
         },
         {
             "eventName": "Take Panadol @ 18:00",
             "calendar": "Medicine",
             "color": "green",
-            "date": "2020-04-10"
+            "date": "2020-04-11"
         },
         {
-            "eventName": "Take Panadol @ 18:00",
+            "eventName": "Take Neurofen @ 08:04",
             "calendar": "Medicine",
             "color": "green",
-            "date": "2020-04-11"
+            "date": "2020-05-02"
+        },
+        {
+            "eventName": "Take Neurofen @ 08:04",
+            "calendar": "Medicine",
+            "color": "green",
+            "date": "2020-05-03"
+        },
+        {
+            "eventName": "Take Neurofen @ 08:04",
+            "calendar": "Medicine",
+            "color": "green",
+            "date": "2020-05-04"
         }
     ]
 }
