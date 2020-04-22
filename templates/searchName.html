@@ -20,10 +20,13 @@
 
   <style>
     #map {
-        height: 500px;
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
+      height: 500px;
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    h1 {
+      text-align: center;
     }
   </style>
 
@@ -47,7 +50,7 @@
               <a class="nav-link js-scroll-trigger" href="medHistory.html">My Medical History</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="searchNews.html">News</a>
+              <a class="nav-link js-scroll-trigger" href="searchNews.html">Medical News</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="searchEncyclopaedia.html">Encyclopaedia</a>
@@ -61,108 +64,75 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="container">
+  <br>
+  <br>
+  <br>
+  <h1 id = "results">      Showing results for: {queryTerm} </h1><br>
+  <div id="container"></div>
+      <script type="text/javascript">
+      let queryTerm = document.location.search;  //getting query term from url
+      queryTerm = queryTerm.split("&")
+      queryTerm = queryTerm[0].split("=")
+      console.log(queryTerm[1]);
 
-    <div class="col">
-        <div class="row">
+      const result = document.getElementById("results")
+      result.innerHTML = "Showing results for: " + queryTerm[1];
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="../static/images/telfast.jpg" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Priceline</a>
-                </h4>
-                <h5>$14.99</h5>
-                <p class="card-text">TELFAST 180mg Hayfever Allergy Relief 30 Tablets</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9734; &#9734;</small>
-              </div>
-            </div>
-          </div>
+      const url = 'https://cors-anywhere.herokuapp.com/https://serpapi.com/search.json?engine=google&q=' + queryTerm[1] + '&google_domain=google.com.au&gl=au&hl=en&tbm=shop&api_key=ce42355179a8829936e8ad58e8ed4b4322283dd10eb6d9c8be8f131bc8cdfbdc'
+      async function getData() {
+        const response = await fetch(url);
+        const data = await response.json();
+        // console.log('hello')
+        console.log(data.shopping_results)
+        let i = 0;
+        const c = document.getElementById("container")
+        c.setAttribute("class", "display")
+        for (i = 0; i < 6; i++) {         
+          // container
+          const product = document.createElement("div")
+          product.setAttribute("class", "product");
+          product.setAttribute("class", "row");
+          product.setAttribute("style", "padding:40x");
+          c.appendChild(product)
+          // image
+          const imgdiv = document.createElement("div")
+          imgdiv.setAttribute("class", "col-md-3");
+          const img = document.createElement("img")
+          img.src = data.shopping_results[i].thumbnail;
+          imgdiv.appendChild(img)
+          product.appendChild(imgdiv)
+          // title
+          const textdiv = document.createElement("div")
+          textdiv.setAttribute("class", "col-md-7");
+          const hlink = document.createElement("a")
+          hlink.setAttribute("style", "font-size:30px")
+          hlink.setAttribute("target", "_blank")      
+          hlink.innerHTML = data.shopping_results[i].title
+          hlink.href = data.shopping_results[i].link
+          textdiv.appendChild(hlink)
+          // price
+          const price = document.createElement("h3")
+          let pricetext = document.createTextNode(data.shopping_results[i].price)
+          price.appendChild(pricetext)
+          textdiv.appendChild(price)  
+          product.appendChild(textdiv)   
+          // source
+          const source = document.createElement("p")
+          source.innerHTML = data.shopping_results[i].source
+          textdiv.appendChild(source);
+          // description
+          const desc = document.createElement("h5")
+          let text = document.createTextNode(data.shopping_results[i].snippet)
+          desc.appendChild(text)
+          textdiv.appendChild(desc)  
+          product.appendChild(textdiv)     
+        }
+      }
+          getData();
+      </script>
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="../static/images/telfast2.jpg" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Woolworths</a>
-                </h4>
-                <h5>$12.99</h5>
-                <p class="card-text">Telfast Hay Fever Tablets 120mg 10 pack</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9734; &#9734;</small>
-              </div>
-            </div>
-          </div>
 
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="../static/images/telfast4.jpg" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Coles</a>
-                </h4>
-                <h5>$12.00</h5>
-                <p class="card-text">Telfast Hayfever Allergy Relief Non Drowsy 120mg 10 pack</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="../static/images/telfast3.jpg" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Chemist Warehouse</a>
-                </h4>
-                <h5>$29.99</h5>
-                <p class="card-text">Telfast 180mg 70 tablets</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="../static/images/telfast5.jpg" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Pharmacy@UNSW</a>
-                </h4>
-                <h5>$48.99</h5>
-                <p class="card-text">3x Telfast 60mg 20 Tablets</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="../static/images/telfast6.jpg" alt=""></a>
-              <div class="card-body">
-                <h4 class="card-title">
-                  <a href="#">Pharmacy4Less</a>
-                </h4>
-                <h5>$34.99</h5>
-                <p class="card-text">Telfast 180mg 60 Tablets</p>
-              </div>
-              <div class="card-footer">
-                <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
-              </div>
-            </div>
-          </div>
-
-          <h1>Pharmacies Near Me</h1>
+          <h1>Pharmacies Near Me</h1> <br>
 
           <div id = "map"></div>
           <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCWeQqmIBeMj0-HG79MNSNZe8Uxogxx8f4">
@@ -249,6 +219,8 @@
   </div>
   <!-- /.container -->
 
+  <br>
+  <br>
   <!-- Footer -->
   <footer class="py-5 bg-dark">
     <div class="container">

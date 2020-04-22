@@ -1,21 +1,78 @@
 from flask import Flask, render_template, request, redirect, url_for
+import json
+from datetime import datetime, timedelta
 import sqlite3
-import wikipedia
-import requests
+#import wikipedia
+#import requests
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
+	conn = sqlite3.connect('reminders.db')
+	c = conn.cursor()
+	c.execute('SELECT * from rem')
+	result = c.fetchall()
+	with open('static/json/data.json') as json_file:
+		data = json.load(json_file)
+		del data['entities']
+		entities = []
+		for row in result:
+			eventName, date, time = row
+			nameAndTime = eventName + " @ " + time
+			y = dict()
+			y["eventName"] = nameAndTime
+			y["calendar"] = "Medicine"
+			y["color"] = "green"
+			y["date"] = date
+		    # appending data to emp_details
+			entities.append(y)
+		data['entities'] = entities
+	with open('static/json/data.json','w') as f:
+		json.dump(data, f, indent=4)
+
+		#print ("{} {} {}".format(eventName, date, time))
+		conn.close()
+
 	return render_template('index.html')
 
-@app.route("/index.html")
+@app.route("/index.html", methods=['POST', 'GET'])
 def homeReroute():
 	return render_template('index.html')
 
 @app.route("/addReminder.html", methods=['POST', 'GET'])
 def addReminder():
+	conn = sqlite3.connect('reminders.db')
+	c = conn.cursor()
+
+
+	if request.method== "POST":
+        #if request.form["username"]
+		date1 = request.form["date1"]
+		date2 = request.form["date2"]
+		print (request.form["appt"])
+
+		date1_object = datetime.strptime(date1, '%d/%m/%Y')
+		date2_object = datetime.strptime(date2, '%d/%m/%Y')
+		date2_object += timedelta(days=1)
+
+		while date1_object != date2_object:
+			formatDate = date1_object.strftime('%Y-%m-%d')
+			c.execute("INSERT INTO rem ('eventName', 'date', 'time') VALUES('{}', '{}', '{}')".format(request.form["drug"], formatDate, request.form["appt"]))
+			date1_object += timedelta(days=1)
+			conn.commit()
+			#conn.close()
+
+		return redirect(url_for('home'))
+
+
+		conn.close()
 	return render_template('addReminder.html')
+
+@app.route("/delReminder.html", methods=['POST', 'GET'])
+def delReminder():
+	return render_template('delReminder.html')
+
 
 @app.route("/alert.html", methods=['POST', 'GET'])
 def alert():

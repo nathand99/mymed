@@ -414,7 +414,7 @@
             <a class="nav-link js-scroll-trigger" href="medHistory.html">My Medical History</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="searchNews.html">News</a>
+            <a class="nav-link js-scroll-trigger" href="searchNews.html">Medical News</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="searchEncyclopaedia.html">Encyclopaedia</a>
@@ -439,7 +439,7 @@
       <div id="calendar"></div>
       <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
       <script src="static/js/p5.js"></script>
-      <script src="static/json/data.json">
+      <script>
 
           !function() {
 
@@ -498,7 +498,8 @@
               var self = this;
 
               this.events.forEach(function(ev) {
-               ev.date = self.current.clone().date(Math.random() * (29 - 1) + 1);
+                  ev.date = moment(ev.date);
+               //ev.date = self.current.clone().date(Math.random() * (29 - 1) + 1);
               });
 
 
@@ -762,26 +763,20 @@
             }
           }();
 
-          !function() {
-              function readTextFile(file, callback) {
-                  var rawFile = new XMLHttpRequest();
-                  rawFile.overrideMimeType("application/json");
-                  rawFile.open("GET", file, true);
-                  rawFile.onreadystatechange = function() {
-                      if (rawFile.readyState === 4 && rawFile.status == "200") {
-                          callback(rawFile.responseText);
-                      }
-                  }
-                  rawFile.send(null);
-              }
-
-              //usage:
-              readTextFile("static/json/data.json", function(text){
-                  var myData = JSON.parse(text);
-                  console.log(data);
-                  var calendar = new Calendar('#calendar', myData.entities);
-
-              });
+          function makeCalendar () {
+              //var data = require('static/json/data.json');
+              //calendar;
+              //setInterval(function () {
+              fetch("static/json/data.json")
+                  .then(function(u){ return u.json();})
+                  .then(
+                        function(json){
+                          //console.log(json);
+                          var calendar = new Calendar('#calendar', json.entities);
+                        }
+                      )
+              //}, 10000);
+             //var calendar = new Calendar('#calendar', data);
             //console.log (myData.entities);
 
 
@@ -789,8 +784,11 @@
 
             }
 
+          };
 
-          }();
+          //setInterval(function () {
+              makeCalendar();
+          //}, 1000);
 
 
       </script>

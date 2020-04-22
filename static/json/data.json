@@ -1,6 +1,34 @@
 {
     "entities": [
-      { "eventName": "Lunch Meeting w/ Mark", "calendar": "Work", "color": "orange" },
-      { "eventName": "Interview - Jr. Web Developer", "calendar": "Work", "color": "orange" },
+        {
+            "eventName": "Take Panadol @ 18:00",
+            "calendar": "Medicine",
+            "color": "green",
+            "date": "2020-04-23"
+        },
+        {
+            "eventName": "Take Panadol @ 18:00",
+            "calendar": "Medicine",
+            "color": "green",
+            "date": "2020-04-24"
+        },
+        {
+            "eventName": "Take Panadol @ 18:00",
+            "calendar": "Medicine",
+            "color": "green",
+            "date": "2020-04-25"
+        },
+        {
+            "eventName": "Take Panadol @ 18:00",
+            "calendar": "Medicine",
+            "color": "green",
+            "date": "2020-04-10"
+        },
+        {
+            "eventName": "Take Panadol @ 18:00",
+            "calendar": "Medicine",
+            "color": "green",
+            "date": "2020-04-11"
+        }
     ]
 }
