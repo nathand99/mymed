@@ -1,34 +1,3 @@
 {
-    "entities": [
-        {
-            "eventName": "Take Panadol @ 18:00",
-            "calendar": "Medicine",
-            "color": "green",
-            "date": "2020-04-11"
-        },
-        {
-            "eventName": "Take Neurofen @ 08:04",
-            "calendar": "Medicine",
-            "color": "green",
-            "date": "2020-05-02"
-        },
-        {
-            "eventName": "Take Neurofen @ 08:04",
-            "calendar": "Medicine",
-            "color": "green",
-            "date": "2020-05-03"
-        },
-        {
-            "eventName": "Take Neurofen @ 08:04",
-            "calendar": "Medicine",
-            "color": "green",
-            "date": "2020-05-04"
-        },
-        {
-            "eventName": "Appointment w/ Dr. Pearson @ 15:00",
-            "calendar": "Medicine",
-            "color": "green",
-            "date": "2020-04-14"
-        }
-    ]
+    "entities": []
 }
